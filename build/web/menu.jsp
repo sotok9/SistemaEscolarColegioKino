@@ -69,6 +69,8 @@
            function Salir(){
                
            }
+           
+
         </script>
         
         <div data-role="page" id="pageone">
@@ -82,7 +84,7 @@
                     
                     <li data-role="list-divider">Estudiantes</li>
                     
-                    <li data-icon="edit" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Inscripciones</a></li>
+                    <li data-icon="edit" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/BuscarTutor.jsp" onclick="fadeOut(500)" target="Marco">Inscripciones</a></li>
                     <li data-icon="action" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Colegiaturas</a></li>
                     <li data-icon="carat-r" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Documentación</a></li>
                     <li data-icon="search" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Consulta</a></li>
@@ -128,7 +130,7 @@
                 
                 
                 <div class="contendorDivFrame">
-                    <iframe name="Marco" src="principal.html" id="Marco" frameborder="0">
+                    <iframe name="Marco" src="principal.html" id="Marco" frameborder="0" >
                         
                     </iframe>
                 </div>
