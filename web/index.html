@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>SISTEMA ESCOLAR.- Iniciar Sesión</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="jquery1.4/jquery.mobile-1.4.5.css" />
+        
+        <script src="jquery1.4/jquery-1.11.1.min.js"></script>
+        <script src="jquery1.4/jquery.mobile-1.4.5.min.js"></script>
+        <script src="jquery1.4/demos/js/jquery.js"></script>
+	<script src="jquery1.4/demos/js/jquery.mobile-1.4.5.min.js"></script>
+        
+        <style>
+            a.botoninicio{
+                margin-top: 20%;
+                width: 24%;
+                height: 20%;
+                transition: 1s;
+            }
+            
+            a.botoninicio:hover{
+                width: 25%;
+                height: 25%;
+                box-shadow: 3px 3px 3px 1px;
+            }
+            
+        </style>
+        
+    </head>
+    <body>
+        
+        <div data-role="header" data-theme="b" class="ui-corner-all">
+           <h4 style="color:#fff; font-family: verdana; font-weight: normal">Sistema Escolar Colegio Kino</h4>
+        </div>
+        
+        
+        <div align="center">
+            <a href="#popupLogin" data-rel="popup" data-position-to="origin" class="botoninicio ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="flip">Iniciar Sesión</a>
+        </div>
+            
+            <form data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all" style="padding: 15px; width: 300px" action="./jsp/validar_login.jsp" method="post">
+               <div  align="center">
+               <h3>Iniciar Sesión</h3>
+               <input type="text" style="text-align: center" name="user" id="un" placeholder="usuario" data-theme="a">
+               <input type="password" style="text-align: center" name="pass" id="pw" placeholder="contraseña" data-theme="a">
+               
+               <button type="submit" data-theme="b" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Entrar</button>
+               </div>
+            </form>
+
+    </body>
+</html>
