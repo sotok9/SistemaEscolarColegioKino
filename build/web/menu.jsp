@@ -74,6 +74,25 @@
 
         </script>
         
+        <style>
+            
+              .BotonEncima:hover{
+                            background: #318aac;    
+                            outline: 1px solid;
+                            outline-color: rgba(49, 138, 172, 0.4);
+                            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+                        }
+                        .BotonEncima:hover
+                        {
+                            box-shadow: inset 0 0 20px rgba(49, 138, 172, 0.5), 0 0 20px rgba(49, 138, 172, 0.4);
+                            outline-color: rgba(49, 138, 172, 0);
+                            outline-offset: 30px;
+                            text-shadow: 1px 1px 6px #fff;
+
+                        }
+            
+        </style>
+        
         <div data-role="page" id="pageone">
             <div data-role="panel" id="myPanel" data-display="push" data-theme="b"> 
               
@@ -102,7 +121,7 @@
 
             <div data-role="main" class="ui-content">
                 <div data-role="header" style="height: 55px;" class="ui-corner-all" data-theme="b">
-                    <a href="#myPanel" data-role="button" data-theme="b" style="height: 20px; font-family: verdana; font-size: 16px; color: white; font-weight: normal" class="ui-btn-left" data-icon="home" data-iconpos="left">Menú</a>
+                    <a href="#myPanel" data-role="button" data-theme="b" style="height: 20px; font-family: verdana; font-size: 16px; color: white; font-weight: normal" class="BotonEncima ui-btn-left" data-icon="home" data-iconpos="left">Menú</a>
                     
                     <div align="center" style="color:#fff; font-family: verdana; font-size: 16px; font-weight: normal; margin-top: 15px">
                     <a style="text-decoration: none; color: #fff; font-family: verdana; font-weight: normal" data-rel="popup" data-position-to="origin" data-transition="flip" href="#popupPrincipal">Sistema Escolar Colegio Kino</a>
