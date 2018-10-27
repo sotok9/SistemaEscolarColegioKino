@@ -38,14 +38,19 @@
     vertical-align: top;
             }
         </style>
+        
+     
+        
     </head>
     <body>
 
         <div  align="center">
-            <form  style="width: 30%">
+            
                 <h2>Tutor del alumno</h2>
 
-                <input style="text-align: center" type="search" list="tutores" name="txtTutor" placeholder="Nombre del tutor...">
+                <form  style="width: 15%">
+                 <input style=" text-align: center;"   type="search" list="tutores" name="txtTutor" placeholder="Nombre del tutor..." class="CrecerInput">
+
                 <datalist id="tutores" >
                     <%for (int i = 1; i <= 10; i++) {
                     %>
