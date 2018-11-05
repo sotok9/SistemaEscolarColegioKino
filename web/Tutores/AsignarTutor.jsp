@@ -46,7 +46,7 @@
 
         <div  align="center">
             
-                <h2>Tutores Registrados</h2>
+                <h2>Tutor del alumno</h2>
 
                 <form  style="width: 15%">
                  <input style=" text-align: center;"   type="search" list="tutores" name="txtTutor" placeholder="Nombre del tutor..." class="CrecerInput">
@@ -62,28 +62,23 @@
 
             <table>
                 <tr>
-                    <th>id</th>
                     <th>Nombre</th>
                     <th>Direccion</th>
-                    <th>Telefono 1</th>
-                    <th>Telefono 2</th>
-                    <th>Correo</th>
+                    <th>Seleccionar</th>
                 </tr>
                 <%for (int i = 1; i <= 10; i++) {
                 %>
                 <tr>
-                    <td><%=i%></td>
                     <td>Tutor #<%=i%></td>
-                    <td>Direccion #<%=i*4%></td>
-                    <td><%=123456789%></td>
-                    <td><%=123456789%></td>
-                    <td>tutor<%=i%>@mail.com</td>
+                    <td>Calle #<%=i*4%></td>
+                    <td style="width:10%"><input class="radioinput" style="margin-left: 30%" type="radio" name="Radiobtn" value="true"></td>
                 </tr>
 
                 <% }%>
 
             </table>
-
+                <a href="./../Tutores/tutores.html"  style="margin-right:12.5%" target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar nuevo Tutor</a>
+                <a href="./../Alumnos/Alumnos.html" style="margin-left:12.5%" onclick="fadeOut(500)"   target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Siguiente</a>
         </div>
 
     </body>

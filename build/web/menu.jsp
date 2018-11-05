@@ -82,7 +82,7 @@
                 outline-color: rgba(49, 138, 172, 0.4);
                 transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
             }
-            .BotonEncima:hover
+            .AnimarBoton:hover
             {
                 box-shadow: inset 0 0 20px rgba(49, 138, 172, 0.5), 0 0 20px rgba(49, 138, 172, 0.4);
                 outline-color: rgba(49, 138, 172, 0);
@@ -111,14 +111,14 @@
                 <div class="nav-glyphish-example ">
                     <ul  data-role="listview">
                         <li data-role="list-divider">Tutores</li>
-                        <li data-icon="user" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/tutores.html" onclick="fadeOut(500)" target="Marco">Registro</a></li> 
-                        <li data-icon="search" class="BotonEncima2 ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Consulta</a></li> 
+                        <li data-icon="user" class="AnimarBoton ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/tutores.html" onclick="fadeOut(500)" target="Marco">Registro</a></li> 
+                        <li data-icon="search" class="AnimarBoton ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/BuscarTutor.jsp" onclick="fadeOut(500)" target="Marco">Consulta</a></li> 
 
                         <li data-role="list-divider">Estudiantes</li>
 
-                        <li data-icon="edit" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/BuscarTutor.jsp" onclick="fadeOut(500)" target="Marco">Inscripciones</a></li>
+                        <li data-icon="edit" class="AnimarBoton ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/AsignarTutor.jsp" onclick="fadeOut(500)" target="Marco">Inscripciones</a></li>
                         <li data-icon="action" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Colegiaturas</a></li>
-                        <li data-icon="carat-r" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Documentación</a></li>
+                        <li data-icon="carat-r" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Alumnos/Documentacion.jsp" onclick="fadeOut(500)" target="Marco">Documentación</a></li>
                         <li data-icon="search" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Consulta</a></li>
 
                         <li data-role="list-divider">Administración</li>
