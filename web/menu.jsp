@@ -82,16 +82,6 @@
                 outline-color: rgba(49, 138, 172, 0.4);
                 transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
             }
-            .AnimarBoton:hover
-            {
-                box-shadow: inset 0 0 20px rgba(49, 138, 172, 0.5), 0 0 20px rgba(49, 138, 172, 0.4);
-                outline-color: rgba(49, 138, 172, 0);
-                outline-offset: 30px;
-                text-shadow: 1px 1px 6px #fff;
-
-            }
-
-            <!--al poner el mause encima del boton--> 
             .BotonEncima2:hover{
 
                 background: #000;  
@@ -100,7 +90,23 @@
             {
                 box-shadow: inset 0 0 20px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255,255, 1); 
             }
-            <!--se acabo-->
+
+            .AnimarBoton:hover
+            {
+                box-shadow: inset 0 0 20px rgba(49, 138, 172, 0.5), 0 0 20px rgba(49, 138, 172, 0.4);
+                outline-color: rgba(49, 138, 172, 0);
+                outline-offset: 30px;
+                text-shadow: 1px 1px 6px #fff;
+            }
+            
+            .AnimarTexto:hover
+            {
+                outline-color: rgba(49, 138, 172, 0);
+                outline-offset: 30px;
+                text-shadow: 1px 1px 6px #fff;
+            }
+ 
+   
         </style>
 
 
@@ -110,22 +116,22 @@
 
                 <div class="nav-glyphish-example ">
                     <ul  data-role="listview">
-                        <li data-role="list-divider">Tutores</li>
-                        <li data-icon="user" class="AnimarBoton ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/tutores.html" onclick="fadeOut(500)" target="Marco">Registro</a></li> 
-                        <li data-icon="search" class="AnimarBoton ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/BuscarTutor.jsp" onclick="fadeOut(500)" target="Marco">Consulta</a></li> 
+                        <br> <li style="font-size: 110%;"  data-role="list-divider">Tutores</li>
+                        <li data-icon="user" class="BotonEncima2 ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/tutores.html" onclick="fadeOut(500)" target="Marco">Registro</a></li> 
+                        <li data-icon="search" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/BuscarTutor.jsp" onclick="fadeOut(500)" target="Marco">Busqueda</a></li><br>
 
-                        <li data-role="list-divider">Estudiantes</li>
+                        <li style="font-size: 110%; " data-role="list-divider">Estudiantes</li>
 
-                        <li data-icon="edit" class="AnimarBoton ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/AsignarTutor.jsp" onclick="fadeOut(500)" target="Marco">Inscripciones</a></li>
-                        <li data-icon="action" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Colegiaturas</a></li>
-                        <li data-icon="carat-r" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Alumnos/Documentacion.jsp" onclick="fadeOut(500)" target="Marco">Documentación</a></li>
-                        <li data-icon="search" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Consulta</a></li>
+                        <li data-icon="edit" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/AsignarTutor.jsp" onclick="fadeOut(500)" target="Marco">Inscripciones</a></li>
+                        <li data-icon="action" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Colegiaturas</a></li>
+                        <li data-icon="carat-r" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Alumnos/Documentacion.jsp" onclick="fadeOut(500)" target="Marco">Documentación</a></li>
+                        <li data-icon="search" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Consulta</a></li><br>
 
-                        <li data-role="list-divider">Administración</li>
+                        <li style="font-size: 110%; " data-role="list-divider">Administración</li>
 
-                        <li data-icon="refresh" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Ciclos</a></li>
-                        <li data-icon="tag" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Precios</a></li>
-                        <li data-icon="user" class="ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Usuarios</a></li>
+                        <li data-icon="refresh" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Ciclos</a></li>
+                        <li data-icon="tag" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Precios</a></li>
+                        <li data-icon="user" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Usuarios</a></li>
                     </ul> 
                 </div>
 
@@ -133,13 +139,13 @@
 
             <div data-role="main" class="ui-content">
                 <div data-role="header" style="height: 55px;" class="ui-corner-all" data-theme="b">
-                    <a href="#myPanel" data-role="button" data-theme="b" style="height: 20px; font-family: verdana; font-size: 16px; color: white; font-weight: normal" class="BotonEncima ui-btn-left" data-icon="home" data-iconpos="left">Menú</a>
+                    <a href="#myPanel" data-role="button" data-theme="b" style="height: 20px; font-family: verdana; font-size: 16px; color: white; font-weight: normal" class="BotonEncima2 ui-btn-left" data-icon="home" data-iconpos="left">Menú</a>
 
                     <div align="center" style="color:#fff; font-family: verdana; font-size: 16px; font-weight: normal; margin-top: 15px">
-                        <a style="text-decoration: none; color: #fff; font-family: verdana; font-weight: normal" data-rel="popup" data-position-to="origin" data-transition="flip" href="#popupPrincipal">Sistema Escolar Colegio Kino</a>
+                        <a  class="AnimarTexto" style="font-size: 125%; text-decoration: none; color: #fff; font-family: verdana; font-weight: normal" data-rel="popup" data-position-to="origin" data-transition="flip" href="#popupPrincipal">Sistema Escolar Colegio Kino</a>
                     </div>
 
-                    <a href="./jsp/salida.jsp" data-role="button" data-theme="b" style="height: 20px; font-family: verdana; font-size: 16px; color: white; font-weight: normal" class="ui-btn-right" data-icon="power" data-iconpos="left">Salir</a>
+                    <a href="./jsp/salida.jsp" data-role="button" data-theme="b" style="height: 20px; font-family: verdana; font-size: 16px; color: white; font-weight: normal" class="BotonEncima2 ui-btn-right" data-icon="power" data-iconpos="left">Salir</a>
                 </div>
 
                 <form data-role="popup" id="popupPrincipal" data-overlay-theme="b" data-theme="b" data-dismissible="true" style="max-width:400px;" class="ui-corner-all" style="padding: 1px; width: 300px"  method="post">
@@ -156,8 +162,8 @@
                         <div align="center" role="main" class="ui-content">
                                 <h3 class="ui-title">¿Volver a la Ventana Principal?</h3>
                             
-                                <a href="./principal.html" onclick="fadeOut(500);ClosePopup();" target="Marco"  class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="flow" >Volver</a>
-                                <a href="#" onclick="ClosePopup()" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" >Cancelar</a>
+                                <a href="./principal.html" onclick="fadeOut(500);ClosePopup();" target="Marco"  class="BotonEncima2 ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="flow" >Volver</a>
+                                <a href="#" onclick="ClosePopup()" class="BotonEncima2 ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" >Cancelar</a>
                             </div>
 
 
