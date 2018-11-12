@@ -9,6 +9,7 @@
         <script src="../jquery1.4/demos/js/jquery.js"></script>
         <script src=../jquery1.4/demos/js/jquery.mobile-1.4.5.min.js></script> 
 
+        <script src="http://malsup.github.com/jquery.form.js"></script> 
         <style>
             <!--al poner el mause encima del boton--> 
             .BotonEncima:hover{
@@ -21,9 +22,37 @@
             }
             <!--se acabo-->
         </style>
+
+        <script>
+            $(document).ready(function () {
+                var options = {
+                    beforeSubmit: showRequest,
+                    success: showResponse,
+
+                  //  url: '../jsp/RegistroTutor.jsp', // override for form's 'action' attribute 
+                  //  type: 'post', // 'get' or 'post', override for form's 'method' attribute 
+                    clearForm: true        // clear all form fields after successful submit 
+
+                };
+                $('#myform').ajaxForm(options);
+            });
+
+
+            function showRequest(formData, jqForm, options) {
+                var queryString = $.param(formData);
+
+                alert('About to submit: \n\n' + queryString);
+                return true;
+            }
+
+            function showResponse(responseText, statusText, xhr, $form) {
+
+                alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+            }
+        </script>
     </head>
     <body style="align-items: center;">
-        <form style="align-items: center; width:600px; height: 200px; margin-left: 35%;">
+        <form method="post" action="../jsp/RegistroTutor.jsp"  id="myform" style="align-items: center; width:600px; height: 200px; margin-left: 35%;">
 
             <div data-role="header" data-theme="b" class="ui-corner-all" style="margin-top:25px; " >
                 <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Registro de tutores</h4>
@@ -32,13 +61,13 @@
                   <div class="ui-body ui-body-a ui-corner-all">
 
                 <div class="ui-fild-con">
-                    <input type="text" name="Nombre-Tutor" id="Nombre-Tutor" value="" placeholder="Nombre Del Tutor">
+                    <input type="text" name="Nombre-Tutor" id="Nombre-Tutor" value="" placeholder="Nombre" required>
                 </div>
-                <input type="text" name="Direccion-Tutor" id="Direccion-Tutor" value="" placeholder=" Dirección Del Tutor">
-                <input type="tel" data-clear-btn="true" name="Telefono-Tutor-1" id="Telefono-Tutor-1" value="" placeholder="Télefono 1"> 
-                <input type="tel" data-clear-btn="true" name="Telefono-Tutor-2" id="Telefono-Tutor-2" value="" placeholder="Télefono 2"> 
+                <input type="text" name="Direccion-Tutor" id="Direccion-Tutor" value="" placeholder="Dirección" required>
+                <input type="tel" pattern="[0-9]{1,}" title="Solo numeros" data-clear-btn="true" name="Telefono-Tutor-1" id="Telefono-Tutor-1" placeholder="Télefono 1" required> 
+                <input type="tel" pattern="[0-9]{1,}" title="Solo numeros" data-clear-btn="true" name="Telefono-Tutor-2" id="Telefono-Tutor-2" placeholder="Télefono 2(OPCIONAL)"> 
                 <input type="email" data-clear-btn="true" name="Email-Tutor" id="Email-Tutor" value="" placeholder="Correo Electronico">
-                <a  style="margin-left: 240px;" class="BotonEncima ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar</a>
+                <button id="btn" style="margin-left: 240px;" class="BotonEncima ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar</button>
             </div>
         </form>
     </body>
