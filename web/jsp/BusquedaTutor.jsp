@@ -20,7 +20,7 @@
                             String myDriver = "org.gjt.mm.mysql.Driver";
                             Class.forName(myDriver);
                             Connection conn = DriverManager.getConnection(
-                                    "jdbc:mysql://localhost:3307/schema_kino", "root", "root");
+                                    "jdbc:mysql://localhost:3306/schema_kino", "root", "root");
 
                             String query = "SELECT * FROM tutores WHERE nombre like '%"+nombre+"%'";
                             Statement st = conn.createStatement();

@@ -18,7 +18,7 @@
     try {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3307/schema_kino", "root", "root");
+                "jdbc:mysql://localhost:3306/schema_kino", "root", "root");
 
         Statement stmt = con.createStatement();
         PreparedStatement ps = con.prepareStatement("INSERT INTO tutores (nombre, direccion, tel1, tel2, correo) VALUES (?,?,?,?,?)");
