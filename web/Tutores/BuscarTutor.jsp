@@ -19,7 +19,7 @@
         <script src="../jquery1.4/jquery.mobile-1.4.5.min.js"></script>
         <script src="../jquery1.4/demos/js/jquery.js"></script>
         <script src="../jquery1.4/demos/js/jquery.mobile-1.4.5.min.js"></script>
-        <script src="http://malsup.github.com/jquery.form.js"></script> 
+        <script src="../jquery1.4/jquery.form.js"></script>
         <style>
             table {
                 font-family: arial, sans-serif;
@@ -47,9 +47,6 @@
                 var options = {
                     beforeSubmit: showRequest,
                     success: showResponse,
-
-                    //  url: '../jsp/RegistroTutor.jsp', // override for form's 'action' attribute 
-                    //  type: 'post', // 'get' or 'post', override for form's 'method' attribute 
                     clearForm: true        // clear all form fields after successful submit 
 
                 };
@@ -96,7 +93,7 @@
                             String myDriver = "org.gjt.mm.mysql.Driver";
                             Class.forName(myDriver);
                             Connection conn = DriverManager.getConnection(
-                                    "jdbc:mysql://localhost:3307/schema_kino", "root", "root");
+                                    "jdbc:mysql://localhost:3306/schema_kino", "root", "root");
 
                             String query = "SELECT * FROM tutores";
                             Statement st = conn.createStatement();
