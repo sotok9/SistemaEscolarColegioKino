@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="clases.ConexionMysql.Conexion"%>
 <!DOCTYPE html>
 <html>
     <head>

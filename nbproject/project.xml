@@ -13,6 +13,7 @@
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
+                <root id="src.src.dir"/>
                 <root id="src.dir"/>
             </source-roots>
             <test-roots>

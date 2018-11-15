@@ -5,6 +5,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
+<%@page import="clases.ConexionMysql.Conexion"%>
  <table>
                     <tr>
                         <th>ID</th>
@@ -15,12 +16,12 @@
                         <th>Correo</th>
                     </tr>
                     <%
+                        Conexion conexion = new Conexion();
                         String nombre =  (String) request.getParameter("Nombre-Tutor");
                         try {
                             String myDriver = "org.gjt.mm.mysql.Driver";
                             Class.forName(myDriver);
-                            Connection conn = DriverManager.getConnection(
-                                    "jdbc:mysql://localhost:3306/schema_kino", "root", "root");
+                            Connection conn = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
                             String query = "SELECT * FROM tutores WHERE nombre like '%"+nombre+"%'";
                             Statement st = conn.createStatement();

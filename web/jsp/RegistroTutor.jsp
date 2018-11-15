@@ -5,7 +5,9 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
+<%@page import="clases.ConexionMysql.Conexion"%>
 <%
+    Conexion conexion = new Conexion();
     String nombre = request.getParameter("Nombre-Tutor");
     String direccion = request.getParameter("Direccion-Tutor");
     long tel1 = Long.valueOf( (String) request.getParameter("Telefono-Tutor-1"));
@@ -17,8 +19,7 @@
     String correo = request.getParameter("Email-Tutor");
     try {
         Class.forName("com.mysql.jdbc.Driver");
-        Connection con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/schema_kino", "root", "root");
+        Connection conn = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
         Statement stmt = con.createStatement();
         PreparedStatement ps = con.prepareStatement("INSERT INTO tutores (nombre, direccion, tel1, tel2, correo) VALUES (?,?,?,?,?)");

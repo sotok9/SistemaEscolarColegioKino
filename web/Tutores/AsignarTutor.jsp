@@ -8,6 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
+<%@page import="clases.ConexionMysql.Conexion"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -121,11 +122,11 @@
                         <th>Seleccionar</th>
                     </tr>
                     <%
+                        Conexion conexion = new Conexion();
                         try {
                             String myDriver = "org.gjt.mm.mysql.Driver";
                             Class.forName(myDriver);
-                            Connection conn = DriverManager.getConnection(
-                                    "jdbc:mysql://localhost:3306/schema_kino", "root", "root");
+                            Connection conn = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
                             int num = 0;
                             String query = "SELECT * FROM tutores";
                             Statement st = conn.createStatement();
