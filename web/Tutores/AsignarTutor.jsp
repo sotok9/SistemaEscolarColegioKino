@@ -86,13 +86,12 @@
                     }
                     ciclo += 1;
                 });
-                $("#nombretutor").val(Tutor)
-                $("#idtutor").val(idTutor)
-                var formulario = $("#myform2");
-                alert(formulario.serialize());
-                formulario.submit();
+                sessionStorage.setItem("idTutor", idTutor);
+                sessionStorage.setItem("NombreTutor", Tutor);
+               location.href="../Alumnos/RegistroAlumno.jsp";
             }
         </script>
+        
     </head>
     <body>
 
@@ -169,8 +168,8 @@
                     }
                 %>
             </datalist>
-            <a href="./../Tutores/tutores.html"  style="margin-right:12.5%" target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar nuevo Tutor</a>
-            <button href="./../Alumnos/Alumnos.html" style="margin-left:12.5%" onclick="siguiente()"   target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Siguiente</button>
+            <a href="./../Tutores/RegistrarTutor.html"  style="margin-right:12.5%" target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar nuevo Tutor</a>
+            <button  style="margin-left:12.5%" onclick="siguiente()"   target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Siguiente</button>
         </div>
 
     </body>

@@ -117,7 +117,7 @@
                 <div class="nav-glyphish-example ">
                     <ul  data-role="listview">
                         <br> <li style="font-size: 110%;"  data-role="list-divider">Tutores</li>
-                        <li data-icon="user" class="BotonEncima2 ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/RegistroTutor.html" onclick="fadeOut(500)" target="Marco">Registro</a></li> 
+                        <li data-icon="user" class="BotonEncima2 ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/RegistrarTutor.html" onclick="fadeOut(500)" target="Marco">Registro</a></li> 
                         <li data-icon="search" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/BuscarTutor.jsp" onclick="fadeOut(500)" target="Marco">Busqueda</a></li><br>
 
                         <li style="font-size: 110%; " data-role="list-divider">Estudiantes</li>
@@ -129,7 +129,7 @@
 
                         <li style="font-size: 110%; " data-role="list-divider">Administración</li>
 
-                        <li data-icon="refresh" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Ciclos</a></li>
+                        <li data-icon="refresh" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a  href="./Administrativo/Ciclos.jsp" onclick="fadeOut(500)" target="Marco">Ciclos</a></li>
                         <li data-icon="tag" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Precios</a></li>
                         <li data-icon="user" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Usuarios</a></li>
                     </ul> 
