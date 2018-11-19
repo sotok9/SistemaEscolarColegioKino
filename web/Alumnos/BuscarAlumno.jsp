@@ -73,10 +73,10 @@
 
         <div  align="center">
 
-            <h2>Tutores Registrados</h2>
+            <h2>Alumnos Registrados</h2>
 
-            <form action="../jsp/BusquedaTutor.jsp" method="post" id="myform"  style="width: 15%">
-                <input style=" text-align: center;"   type="search" list="tutores" name="Nombre-Tutor" placeholder="Nombre del tutor..." class="CrecerInput">
+            <form action="../jsp/BusquedaAlumno.jsp" method="post" id="myform"  style="width: 15%">
+                <input style=" text-align: center;"   type="search" list="alumnos" name="Nombre-Alumno" placeholder="Nombre del alumno..." class="CrecerInput">
                 <button type="submit">buscar</button> 
             </form>
             <div id="mydiv">
@@ -85,9 +85,12 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Direccion</th>
-                        <th>Telefono 1</th>
-                        <th>Telefono 2</th>
-                        <th>Correo</th>
+                        <th>Sexo</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Grado</th>
+                        <th>Nivel</th>
+                        <th>Grupo</th>
+                        <th>Tutor</th>
                     </tr>
                     <%
                         Conexion conexion = new Conexion();
@@ -95,26 +98,29 @@
                             String myDriver = "org.gjt.mm.mysql.Driver";
                             Class.forName(myDriver);
                             Connection conn = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
-                            String query = "SELECT * FROM tutores";
+                            String query = "SELECT idalumnos, alumnos.nombre, alumnos.direccion, sexo, fechanac, grado, nivel, grupo, tutores.nombre as nombretutor FROM schema_kino.alumnos "
+                                    + "INNER JOIN tutores ON alumnos.idtutor = tutores.idtutor;";
                             Statement st = conn.createStatement();
                             ResultSet rs = st.executeQuery(query);
                             List ListaNombres = new ArrayList();
                             while (rs.next()) {
-
-                                int id = rs.getInt("idtutor");
-                                String Nombre = rs.getString("nombre");
-                                ListaNombres.add(Nombre);
-                                String Direccion = rs.getString("direccion");
-                                long telefono1 = rs.getLong("tel1");
-                                long telefono2 = rs.getLong("tel2");
-                                String correo = rs.getString("correo");
+                                String sexo = "";
+                                if (rs.getInt("sexo") == 0) {
+                                    sexo = "Mujer";
+                                } else {
+                                    sexo = "Hombre";
+                                }
+                                ListaNombres.add(rs.getString("nombre"));
                                 out.print("<tr>");
-                                out.print("<td>" + id + "</td>");
-                                out.print("<td>" + Nombre + "</td>");
-                                out.print("<td>" + Direccion + "</td>");
-                                out.print("<td>" + telefono1 + "</td>");
-                                out.print("<td>" + telefono2 + "</td>");
-                                out.print("<td>" + correo + "</td>");
+                                out.print("<td>" + rs.getInt("idalumnos") + "</td>");
+                                out.print("<td>" + rs.getString("nombre") + "</td>");
+                                out.print("<td>" + rs.getString("direccion") + "</td>");
+                                out.print("<td>" + sexo + "</td>");
+                                out.print("<td>" + rs.getString("fechanac") + "</td>");
+                                out.print("<td>" + rs.getString("grado") + "</td>");
+                                out.print("<td>" + rs.getString("nivel") + "</td>");
+                                out.print("<td>" + rs.getString("grupo") + "</td>");
+                                out.print("<td>" + rs.getString("nombretutor") + "</td>");
                                 out.print("</tr>");
 
                             }
@@ -125,7 +131,7 @@
                     %>
                 </table>
             </div>
-            <datalist id="tutores" >
+            <datalist id="alumnos" >
                 <%for (int i = 0; i < ListaNombres.size(); i++) {
                 %>
                 <option  ><%= ListaNombres.get(i)%></option>

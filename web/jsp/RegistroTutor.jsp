@@ -10,18 +10,18 @@
     Conexion conexion = new Conexion();
     String nombre = request.getParameter("Nombre-Tutor");
     String direccion = request.getParameter("Direccion-Tutor");
-    long tel1 = Long.valueOf( (String) request.getParameter("Telefono-Tutor-1"));
-    long tel2=0;
-    if(((String) request.getParameter("Telefono-Tutor-2")).equals(null)){
+    long tel1 = Long.valueOf((String) request.getParameter("Telefono-Tutor-1"));
+    long tel2 = 0;
+    if (((String) request.getParameter("Telefono-Tutor-2")).equals(null)) {
         tel2 = Long.valueOf(request.getParameter("Telefono-Tutor-2"));
     }
-    
+
     String correo = request.getParameter("Email-Tutor");
     try {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
-        Statement stmt = con.createStatement();
+
         PreparedStatement ps = con.prepareStatement("INSERT INTO tutores (nombre, direccion, tel1, tel2, correo) VALUES (?,?,?,?,?)");
         ps.setString(1, nombre);
         ps.setString(2, direccion);
@@ -30,6 +30,9 @@
         ps.setString(5, correo);
         ps.executeUpdate();
         out.print("Tutor registrado exitosamente");
+
+        con.close();
+        ps.close();
     } catch (SQLDataException ex) {
         out.print("Error al registrar tutor: " + ex.getMessage());
     }

@@ -98,15 +98,15 @@
                 outline-offset: 30px;
                 text-shadow: 1px 1px 6px #fff;
             }
-            
+
             .AnimarTexto:hover
             {
                 outline-color: rgba(49, 138, 172, 0);
                 outline-offset: 30px;
                 text-shadow: 1px 1px 6px #fff;
             }
- 
-   
+
+
         </style>
 
 
@@ -123,14 +123,18 @@
                         <li style="font-size: 110%; " data-role="list-divider">Estudiantes</li>
 
                         <li data-icon="edit" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Tutores/AsignarTutor.jsp" onclick="fadeOut(500)" target="Marco">Inscripciones</a></li>
-                        <li data-icon="action" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Colegiaturas</a></li>
                         <li data-icon="carat-r" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Alumnos/Documentacion.jsp" onclick="fadeOut(500)" target="Marco">Documentación</a></li>
-                        <li data-icon="search" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Consulta</a></li><br>
+                        <li data-icon="search" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Alumnos/BuscarAlumno.jsp" onclick="fadeOut(500)" target="Marco" >Busqueda</a></li><br>
+
+                        <li style="font-size: 110%; " data-role="list-divider">Tesoreria</li>
+                        
+                        <li data-icon="bullets" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Estado de cuenta</a></li>
+                        <li data-icon="check" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Administrativo/Abonos.jsp" onclick="fadeOut(500)" target="Marco" >Abonar</a></li>
 
                         <li style="font-size: 110%; " data-role="list-divider">Administración</li>
 
                         <li data-icon="refresh" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a  href="./Administrativo/Ciclos.jsp" onclick="fadeOut(500)" target="Marco">Ciclos</a></li>
-                        <li data-icon="tag" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Precios</a></li>
+                        <li data-icon="tag" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a a href="./Administrativo/Precios.jsp" onclick="fadeOut(500)" target="Marco" >Precios</a></li>
                         <li data-icon="user" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Usuarios</a></li>
                     </ul> 
                 </div>

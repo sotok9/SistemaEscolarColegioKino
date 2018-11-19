@@ -7,28 +7,29 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <%@page import="clases.ConexionMysql.Conexion"%>
+<%@page import="clases.Auxiliar.Adeudos"%>
 
 
 <%
 
     try {
+        Adeudos adeudos = new Adeudos();
         Conexion conexion = new Conexion();
-    int idTutor = Integer.valueOf(request.getParameter("idTutor"));
-    String idCiclo = request.getParameter("idCiclo");
-    String Nombre = request.getParameter("NombreAlumno");
-    String direccion = request.getParameter("DireccionAlumno");
-    String FechaNac = request.getParameter("FechaNacimiento");
-    int Sexo = Integer.valueOf(request.getParameter("Sexo"));
-    String Nivel = request.getParameter("SelectNivel");
-    String Grado = request.getParameter("SelectGrado");
-    String Grupo = request.getParameter("SelectGrupo");
-    String Discapacidad = request.getParameter("DiscapacidadAlumno");
-    out.print(Sexo);
-    
+        int idTutor = Integer.valueOf(request.getParameter("idTutor"));
+        String idCiclo = request.getParameter("idCiclo");
+        String Nombre = request.getParameter("NombreAlumno");
+        String direccion = request.getParameter("DireccionAlumno");
+        String FechaNac = request.getParameter("FechaNacimiento");
+        int Sexo = Integer.valueOf(request.getParameter("Sexo"));
+        String Nivel = request.getParameter("SelectNivel");
+        String Grado = request.getParameter("SelectGrado");
+        String Grupo = request.getParameter("SelectGrupo");
+        String Discapacidad = request.getParameter("DiscapacidadAlumno");
+        out.print(Sexo);
+
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
-        Statement stmt = con.createStatement();
         PreparedStatement ps = con.prepareStatement("INSERT INTO alumnos "
                 + "(idtutor, idciclo, nombre, sexo, direccion, fechanac, discapacidad, grado, nivel, grupo) VALUES (?,?,?,?,?,?,?,?,?,?)");
         ps.setInt(1, idTutor);
@@ -41,7 +42,17 @@
         ps.setString(8, Grado);
         ps.setString(9, Nivel);
         ps.setString(10, Grupo);
-       ps.executeUpdate();
+        ps.executeUpdate();
+        String query = "SELECT idalumnos FROM schema_kino.alumnos ORDER BY idalumnos DESC";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        if(rs.first()){
+            adeudos.GenerarNuevo(rs.getInt("idalumnos"));
+        }
+            st.close();
+            con.close();
+            rs.close();
+            ps.close();
         out.print("Alumno registrado exitosamente");
     } catch (Exception ex) {
         out.print("Error al registrar tutor: " + ex.getMessage());

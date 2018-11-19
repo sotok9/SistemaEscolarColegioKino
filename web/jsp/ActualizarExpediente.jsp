@@ -25,22 +25,25 @@
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
-        Statement stmt = con.createStatement();
         PreparedStatement ps = con.prepareStatement("UPDATE expediente SET acta=?, curp=?, foto=?, cartilla_vacunacion=?, comprobante_domicilio=?, "
                 + "carta_na=?, acta_bautismo=?, tipo_sangre=?, servicio_medico=? "
                 + " WHERE idexp=?");
-         ps.setInt(1, ActaNac);
-         ps.setInt(2, Curp);
-         ps.setInt(3, Foto);
-         ps.setInt(4, CartillaVacunacion);
-         ps.setInt(5, ComprobanteDomicilio);
-         ps.setInt(6, CartaNoAdeudo);
-         ps.setInt(7, ActaBautismo);
-         ps.setInt(8, TipoSangre);
-         ps.setInt(9, ServicioMedico);
-         ps.setInt(10, idExp);
+        ps.setInt(1, ActaNac);
+        ps.setInt(2, Curp);
+        ps.setInt(3, Foto);
+        ps.setInt(4, CartillaVacunacion);
+        ps.setInt(5, ComprobanteDomicilio);
+        ps.setInt(6, CartaNoAdeudo);
+        ps.setInt(7, ActaBautismo);
+        ps.setInt(8, TipoSangre);
+        ps.setInt(9, ServicioMedico);
+        ps.setInt(10, idExp);
         ps.executeUpdate();
         out.print("Expediente actualizado");
+        
+        con.close();
+        ps.close();
+        
     } catch (Exception ex) {
         out.print("Error al actualizar expediente " + ex.getMessage());
     }

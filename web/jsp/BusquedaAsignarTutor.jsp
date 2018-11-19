@@ -47,6 +47,8 @@
 
             }
             st.close();
+            conn.close();
+            rs.close();
         } catch (Exception e) {
             out.print("Got an exception! ");
             out.print(e.getMessage());

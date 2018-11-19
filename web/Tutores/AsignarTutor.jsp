@@ -40,7 +40,7 @@
             .radioinput{
                 width: 35px;
                 height: 22px;
-                
+
                 display: inline-block;
                 vertical-align: top;
             }
@@ -88,10 +88,10 @@
                 });
                 sessionStorage.setItem("idTutor", idTutor);
                 sessionStorage.setItem("NombreTutor", Tutor);
-               location.href="../Alumnos/RegistroAlumno.jsp";
+                location.href = "../Alumnos/RegistroAlumno.jsp";
             }
         </script>
-        
+
     </head>
     <body>
 
@@ -147,11 +147,13 @@
                                 out.print("<td>" + telefono1 + "</td>");
                                 out.print("<td>" + telefono2 + "</td>");
                                 out.print("<td>" + correo + "</td>");
-                                out.print("<td  style=\"width:10%\"><input id=\""+num+"\" class=\"radioinput RadioTutor\" style=\"margin-left: 30%\" type=\"radio\" form=\"myform\" name=\"Radiobtn\" value=\"true\"></td>");
+                                out.print("<td  style=\"width:10%\"><input id=\"" + num + "\" class=\"radioinput RadioTutor\" style=\"margin-left: 30%\" type=\"radio\" form=\"myform\" name=\"Radiobtn\" value=\"true\"></td>");
                                 out.print("</tr>");
 
                             }
+                            conn.close();
                             st.close();
+                            rs.close();
 
                     %>
                 </table>

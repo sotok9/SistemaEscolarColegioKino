@@ -70,7 +70,9 @@
                                 String ciclo = rs.getInt("año") + "-" + (rs.getInt("año")+1);
                                 out.print("<option value=\""+id+"\">"+ciclo+"</option>");
                             }
+                            con.close();
                             st.close();
+                            rs.close();
                         } catch (Exception e) {
                             out.print("Got an exception! ");
                             out.print(e.getMessage());

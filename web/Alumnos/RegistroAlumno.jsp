@@ -25,7 +25,7 @@ and open the template in the editor.
         <script src=../jquery1.4/demos/js/jquery.mobile-1.4.5.min.js></script> 
         <script src="../jquery1.4/jquery.form.js"></script>
 
-    
+
 
 
         <style>
@@ -49,17 +49,17 @@ and open the template in the editor.
         </script>
 
         <script>
-            $().ready(function(){
+            $().ready(function () {
                 $("#idTutor").val(sessionStorage.getItem("idTutor"));
                 $("#NombreTutor").val(sessionStorage.getItem("NombreTutor"));
             })
-            
-            function insertar(){
+
+            function insertar() {
                 var formulario = $("#myform");
                 alert(formulario.serialize())
-                $.post("../jsp/RegistrarAlumno.jsp",formulario.serialize(), respuesta );
+                $.post("../jsp/RegistrarAlumno.jsp", formulario.serialize(), respuesta);
             }
-            function respuesta(datos){
+            function respuesta(datos) {
                 alert(datos);
             }
         </script>
@@ -69,6 +69,7 @@ and open the template in the editor.
     <body style="align-items: center;">
         <%
             int idCiclo = 0;
+            String ciclo = "";
             try {
                 Conexion conexion = new Conexion();
                 Class.forName("com.mysql.jdbc.Driver");
@@ -88,8 +89,11 @@ and open the template in the editor.
                 ResultSet rs = st.executeQuery(query);
                 if (rs.next()) {
                     idCiclo = rs.getInt("idciclo");
+                    ciclo = rs.getInt("año") + "-" + (rs.getInt("año") + 1);
                 }
+                con.close();
                 st.close();
+                rs.close();
             } catch (Exception ex) {
                 out.print("Error al registrar tutor: " + ex.getMessage());
             }%>
@@ -104,6 +108,7 @@ and open the template in the editor.
                 <input type="text" id="NombreTutor" name="NombreTutor" readonly>        
                 <input type="text" id="idTutor" name="idTutor" readonly>
                 <input type="hidden" id="idCiclo" value="<%=idCiclo%>" name="idCiclo" >
+                <input type="text" id="ciclo" value="<%=ciclo%>" name="idCiclo" readonly>
 
                 <input type="text" name="NombreAlumno" id="Nombre-Alumno" value="" placeholder="Nombre Del Alumno">            
                 <input type="text" name="DireccionAlumno" id="Direccion-Alumno" value="" placeholder=" Dirección Del Alumno">

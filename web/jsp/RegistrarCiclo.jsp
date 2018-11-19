@@ -18,18 +18,21 @@
         String query = "SELECT * FROM ciclo WHERE año=" + ciclo;
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
-        if(rs.first()){
+        if (rs.first()) {
             out.print("Este ciclo ya existe");
-        }else{
-        
-        PreparedStatement ps = con.prepareStatement("INSERT INTO ciclo (año) VALUES (?)");
-        ps.setString(1, ciclo);
-        ps.executeUpdate();
-        
-        out.print("Ciclo registrado exitosamente-" + ciclo);
+        } else {
+
+            PreparedStatement ps = con.prepareStatement("INSERT INTO ciclo (año) VALUES (?)");
+            ps.setString(1, ciclo);
+            ps.executeUpdate();
+
+            out.print("Ciclo registrado exitosamente-" + ciclo);
+            ps.close();
         }
         st.close();
-        
+        con.close();
+        rs.close();
+
     } catch (Exception ex) {
         out.print("Error al registrar tutor: " + ex.getMessage());
     }
