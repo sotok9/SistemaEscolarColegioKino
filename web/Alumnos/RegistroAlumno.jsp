@@ -60,43 +60,15 @@ and open the template in the editor.
                 $.post("../jsp/RegistrarAlumno.jsp", formulario.serialize(), respuesta);
             }
             function respuesta(datos) {
-                alert(datos);
+                alert(datos.trim());
+                location.href = "../Alumnos/AsignarTutor.jsp"
             }
         </script>
     </head>
 
 
     <body style="align-items: center;">
-        <%
-            int idCiclo = 0;
-            String ciclo = "";
-            try {
-                Conexion conexion = new Conexion();
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
-                Calendar cal = Calendar.getInstance();
-                int mes = cal.get(Calendar.MONTH);
-                int año = cal.get(Calendar.YEAR);
-                int añociclo;
-                if (mes < 7) {
-                    añociclo = año + 1;
-                } else {
-                    añociclo = año;
-                }
 
-                String query = "SELECT * FROM ciclo WHERE año=" + añociclo;
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery(query);
-                if (rs.next()) {
-                    idCiclo = rs.getInt("idciclo");
-                    ciclo = rs.getInt("año") + "-" + (rs.getInt("año") + 1);
-                }
-                con.close();
-                st.close();
-                rs.close();
-            } catch (Exception ex) {
-                out.print("Error al registrar tutor: " + ex.getMessage());
-            }%>
         <form id="myform" style="align-items: center; width:600px; height: 200px; margin-left: 35%;">
 
             <div data-role="header" data-theme="b" class="ui-corner-all" style="margin-top:25px; " >
@@ -106,9 +78,8 @@ and open the template in the editor.
 
                   <div class="ui-body ui-body-a ui-corner-all">    
                 <input type="text" id="NombreTutor" name="NombreTutor" readonly>        
-                <input type="text" id="idTutor" name="idTutor" readonly>
-                <input type="hidden" id="idCiclo" value="<%=idCiclo%>" name="idCiclo" >
-                <input type="text" id="ciclo" value="<%=ciclo%>" name="idCiclo" readonly>
+                <input type="text" id="idTutor"  name="idTutor" readonly>
+
 
                 <input type="text" name="NombreAlumno" id="Nombre-Alumno" value="" placeholder="Nombre Del Alumno">            
                 <input type="text" name="DireccionAlumno" id="Direccion-Alumno" value="" placeholder=" Dirección Del Alumno">
@@ -117,9 +88,9 @@ and open the template in the editor.
 
                 <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
                     <p  style=" font-family: verdana; font-weight: bolder" >Sexo del Alumno: </p>
-                            <input type="radio" name="Sexo" id="radio-choice-t-6a" value="1" >
+                            <input type="radio" name="Sexo" id="radio-choice-t-6a"  value="1" >
                             <label class="BotonEncima" style="width: 75%; height: -5%" for="radio-choice-t-6a">Masculino</label>
-                            <input type="radio" name="Sexo" id="radio-choice-t-6b" value="0">
+                            <input type="radio" name="Sexo" id="radio-choice-t-6b"  value="0">
                             <label class="BotonEncima" for="radio-choice-t-6b">Femenino</label>
                      </fieldset>
 
@@ -145,6 +116,30 @@ and open the template in the editor.
                         <select name="SelectGrupo" id="select-v-2c">
                         <option value="A">A</option>
                         <option value="B">B</option>   
+                    </select>
+                    <select name="idCiclo" id="select-v-2b">
+                        <%
+                            try {
+                                Conexion conexion = new Conexion();
+                                Class.forName("com.mysql.jdbc.Driver");
+                                Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
+
+                                String query = "SELECT * FROM ciclo ORDER BY año DESC";
+                                Statement st = con.createStatement();
+                                ResultSet rs = st.executeQuery(query);
+                                while (rs.next()) {
+                                    int id = rs.getInt("idciclo");
+                                    String ciclo = rs.getInt("año") + "-" + (rs.getInt("año") + 1);
+                                    out.print("<option value=\"" + id + "\">" + ciclo + "</option>");
+                                }
+                                con.close();
+                                st.close();
+                                rs.close();
+                            } catch (Exception e) {
+                                out.print("Got an exception! ");
+                                out.print(e.getMessage());
+                            }
+                        %>
                     </select>
                 </fieldset>
                 <br>

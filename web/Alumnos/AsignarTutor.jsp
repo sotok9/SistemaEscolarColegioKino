@@ -100,7 +100,7 @@
             <h2>Tutores Registrados</h2>
 
             <form action="../jsp/BusquedaAsignarTutor.jsp" method="post" id="myform"  style="width: 15%">
-                <input style=" text-align: center;"   type="search" list="tutores" name="Nombre-Tutor" placeholder="Nombre del tutor..." class="CrecerInput">
+                <input style=" text-align: center;" autocomplete="off"  type="search" list="tutores" name="Nombre-Tutor" placeholder="Nombre del tutor..." class="CrecerInput">
                 <button type="submit">buscar</button> 
             </form>
 

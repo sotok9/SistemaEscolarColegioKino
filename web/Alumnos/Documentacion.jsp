@@ -90,7 +90,7 @@
             <h2>Buscar expediente de alumno</h2>
 
             <form action="../jsp/BusquedaExpediente.jsp" method="POST" id="myform" style="width: 25%">
-                <input style=" text-align: center;"   type="search" list="alumnos" name="NombreAlumno" placeholder="Nombre Completo..." class="CrecerInput">
+                <input style=" text-align: center;"  autocomplete="off" type="search" list="alumnos" name="NombreAlumno" placeholder="Nombre Completo..." class="CrecerInput">
                 <button type="submit" >Buscar</button>
                 <datalist id="alumnos" >
                     <%

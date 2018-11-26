@@ -74,7 +74,7 @@
                         <option value="Primaria">Primaria</option>
                         <option value="Secundaria">Secundaria</option>
                     </select>
-                        <label for="select-v-2b">Grado</label>
+
                         <select name="SelectCiclo" id="select-v-2b">
                         <%
                             try {

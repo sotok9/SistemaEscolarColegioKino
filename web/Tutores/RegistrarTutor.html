@@ -26,9 +26,12 @@
             function insertar(){
                 var formulario = $("#FormRegistro");
                 $.post("../jsp/RegistroTutor.jsp",formulario.serialize(), respuesta );
+                
             }
             function respuesta(datos){
                 alert(datos);
+                $('#FormRegistro').trigger("reset");
+               // location.href = "../Tutores/RegistrarTutor.html"
             }
         </script>
     </head>
