@@ -60,7 +60,7 @@
         <form action="../jsp/RegistroPrecios.jsp" method="post"  id="FormRegistro" style="align-items: center; width:600px; height: 200px; margin-left: 35%;">
 
             <div data-role="header" data-theme="b" class="ui-corner-all" style="margin-top:25px; " >
-                <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Registro de Precios</h4>
+                <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Registro/Actualizacion de Precios</h4>
             </div>
 
                   <div class="ui-body ui-body-a ui-corner-all">

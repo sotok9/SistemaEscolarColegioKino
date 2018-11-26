@@ -131,13 +131,14 @@
                         <li style="font-size: 110%; " data-role="list-divider">Tesoreria</li>
 
                         <li data-icon="bullets" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Estado de cuenta</a></li>
+                        <li data-icon="tag" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a a href="./Administrativo/Precios.jsp" onclick="fadeOut(500)" target="Marco" >Precios</a></li>
                         <li data-icon="check" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Administrativo/Abonos.jsp" onclick="fadeOut(500)" target="Marco" >Abonar</a></li><br>
 
                         <li style="font-size: 110%; " data-role="list-divider">Administración</li>
 
                         <li data-icon="calendar" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a  href="./Administrativo/Ciclos.jsp" onclick="fadeOut(500)" target="Marco">Ciclos</a></li>
-                        <li data-icon="tag" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a a href="./Administrativo/Precios.jsp" onclick="fadeOut(500)" target="Marco" >Precios</a></li>
                         <li data-icon="user" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a>Usuarios</a></li>
+                        <li data-icon="edit" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b"><a href="./Administrativo/AvanceCiclo.jsp" onclick="fadeOut(500)" target="Marco">Avance de ciclo</a></li>
                     </ul> 
                 </div>
 

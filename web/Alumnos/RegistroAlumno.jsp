@@ -54,13 +54,25 @@ and open the template in the editor.
                 $("#NombreTutor").val(sessionStorage.getItem("NombreTutor"));
             })
 
-            function insertar() {
-                var formulario = $("#myform");
-                alert(formulario.serialize())
-                $.post("../jsp/RegistrarAlumno.jsp", formulario.serialize(), respuesta);
+
+            $(document).ready(function () {
+                var options = {
+                    beforeSubmit: showRequest,
+                    success: showResponse,
+                    clearForm: true        // clear all form fields after successful submit 
+
+                };
+                $('#myform').ajaxForm(options);
+            });
+
+            function showRequest(formData, jqForm, options) {
+                var queryString = $.param(formData);
+
+                alert('About to submit: \n\n' + queryString);
+                return true;
             }
-            function respuesta(datos) {
-                alert(datos.trim());
+            function showResponse(responseText, statusText, xhr, $form) {
+                alert(responseText.trim());
                 location.href = "../Alumnos/AsignarTutor.jsp"
             }
         </script>
@@ -69,7 +81,7 @@ and open the template in the editor.
 
     <body style="align-items: center;">
 
-        <form id="myform" style="align-items: center; width:600px; height: 200px; margin-left: 35%;">
+        <form action="../jsp/RegistrarAlumno.jsp" method="post" id="myform" style="align-items: center; width:600px; height: 200px; margin-left: 35%;">
 
             <div data-role="header" data-theme="b" class="ui-corner-all" style="margin-top:25px; " >
                 <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Registro de Alumnos</h4>
@@ -81,14 +93,14 @@ and open the template in the editor.
                 <input type="text" id="idTutor"  name="idTutor" readonly>
 
 
-                <input type="text" name="NombreAlumno" id="Nombre-Alumno" value="" placeholder="Nombre Del Alumno">            
-                <input type="text" name="DireccionAlumno" id="Direccion-Alumno" value="" placeholder=" Dirección Del Alumno">
+                <input type="text" name="NombreAlumno" id="Nombre-Alumno" value="" placeholder="Nombre Del Alumno" required>            
+                <input type="text" name="DireccionAlumno" id="Direccion-Alumno" value="" placeholder=" Dirección Del Alumno" required>
                 <label style="font-family: verdana; font-weight: bolder" for="date">Fecha De Nacimiento</label>
-                <input type="date" name="FechaNacimiento" id="FechaNacimiento" value="" />
+                <input type="date" name="FechaNacimiento" id="FechaNacimiento" value="" required/>
 
-                <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
+                <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" required>
                     <p  style=" font-family: verdana; font-weight: bolder" >Sexo del Alumno: </p>
-                            <input type="radio" name="Sexo" id="radio-choice-t-6a"  value="1" >
+                            <input type="radio" name="Sexo" id="radio-choice-t-6a" checked  value="1" >
                             <label class="BotonEncima" style="width: 75%; height: -5%" for="radio-choice-t-6a">Masculino</label>
                             <input type="radio" name="Sexo" id="radio-choice-t-6b"  value="0">
                             <label class="BotonEncima" for="radio-choice-t-6b">Femenino</label>
@@ -146,7 +158,7 @@ and open the template in the editor.
                 <label style="font-family: verdana; font-weight: bolder" for="textarea-1">Discapacidad:</label>
                 <textarea  name="DiscapacidadAlumno" id="DiscapacidadAlumno"></textarea>
                 <br>
-                <a onclick="insertar()" style="margin-left: 240px;"  class="BotonEncima ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar</a>
+                <button type="submit" style="margin-left: 240px;"  class="BotonEncima ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar</button>
 
             </div>
 

@@ -8,7 +8,6 @@
 <%@page import="clases.ConexionMysql.Conexion"%>
 <%
     Conexion conexion = new Conexion();
-     
     String nombre = request.getParameter("Nombre-Tutor");
     String direccion = request.getParameter("Direccion-Tutor");
     long tel1 = Long.valueOf((String) request.getParameter("Telefono-Tutor-1"));

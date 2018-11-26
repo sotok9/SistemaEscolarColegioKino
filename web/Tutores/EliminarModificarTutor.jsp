@@ -104,7 +104,7 @@
 
             <h2>Tutores Registrados</h2>
 
-            <form action="../jsp/FormModificarTutor.jsp" method="post" id="myform"  style="width: 15%">
+            <form action="../jsp/FormModificarTutor.jsp" method="post" id="myform"  style="width: 25%">
                 <input style=" text-align: center;" autocomplete="off"   type="search" list="tutores" name="idTutor" placeholder="Seleccionar tutor..." class="CrecerInput">
 
                 <button type="submit">buscar</button> 

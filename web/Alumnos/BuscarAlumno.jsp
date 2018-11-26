@@ -75,7 +75,7 @@
 
             <h2>Alumnos Registrados</h2>
 
-            <form action="../jsp/BusquedaAlumno.jsp" method="post" id="myform"  style="width: 15%">
+            <form action="../jsp/BusquedaAlumno.jsp" method="post" id="myform"  style="width: 30%">
                 <input style=" text-align: center;" autocomplete="off"   type="search" list="alumnos" name="Nombre-Alumno" placeholder="Nombre del alumno..." class="CrecerInput">
                 <button type="submit">buscar</button> 
             </form>

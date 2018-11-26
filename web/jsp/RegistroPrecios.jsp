@@ -27,6 +27,21 @@
         ResultSet rs = st.executeQuery(query);
         if (rs.first()) {
             out.print("Ya existen precios para este ciclo y nivel");
+            Statement stmt = con.createStatement();
+            PreparedStatement ps = con.prepareStatement("UPDATE precios SET inscripcion=?, cuota_padres=?, libros=?, seguro=?, mensualidad=? WHERE idciclo=? and nivel=? ");
+
+            ps.setInt(1, Inscripcion);
+            ps.setInt(2, CuotaPadres);
+            ps.setInt(3, Libros);
+            ps.setInt(4, Seguro);
+            ps.setInt(5, Mensualidad);
+            ps.setInt(6, Ciclo);
+            ps.setString(7, Nivel);
+            ps.executeUpdate();
+            st.close();
+            con.close();
+            rs.close();
+            out.print("Precios Actualizados exitosamente");
         } else {
 
             Statement stmt = con.createStatement();

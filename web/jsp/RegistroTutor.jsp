@@ -12,7 +12,7 @@
     String direccion = request.getParameter("Direccion-Tutor");
     long tel1 = Long.valueOf((String) request.getParameter("Telefono-Tutor-1"));
     long tel2 = 0;
-    if (((String) request.getParameter("Telefono-Tutor-2")).equals(null)) {
+    if (!((String) request.getParameter("Telefono-Tutor-2")).equals("")) {
         tel2 = Long.valueOf(request.getParameter("Telefono-Tutor-2"));
     }
 
