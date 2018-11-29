@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="../jquery1.4/jquery.mobile-1.4.5.css" />
-
+        <link rel="stylesheet" href="../animate.css" />
         <script src="../jquery1.4/jquery.mobile-1.4.5.min.js"></script>
         <script src="../jquery1.4/demos/js/jquery.js"></script>
         <script src="../jquery1.4/demos/js/jquery.mobile-1.4.5.min.js"></script>
@@ -22,7 +22,6 @@
         <script>
             $(document).ready(function () {
                 var options = {
-                    beforeSubmit: showRequest,
                     success: showResponse,
                     clearForm: true        // clear all form fields after successful submit 
 
@@ -30,26 +29,19 @@
                 $('#myform').ajaxForm(options);
             });
 
-
-            function showRequest(formData, jqForm, options) {
-                var queryString = $.param(formData);
-
-                alert('About to submit: \n\n' + queryString);
-                return true;
-            }
-
             function showResponse(responseText, statusText, xhr, $form) {
                 $('#mydiv').html(responseText).trigger("create");
-                $("#idAlumno").val($("#buscar").val());
-                alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+                // $("#idAlumno").val($("#buscar").val());
+                //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
             }
             function test() {
                 var formulario = $("#adeudos")
-                alert(formulario.serialize())
+                // alert(formulario.serialize())
                 $.get("../jsp/ActualizarAdeudo.jsp", formulario.serialize(), respuesta);
             }
             function respuesta(datos) {
-                alert(datos);
+                alert(datos.trim());
+                location.href = "../Administrativo/Abonos.jsp";
             }
         </script>
     </head>
@@ -59,8 +51,8 @@
             <h2 id="asd">Buscar adeudos de alumno</h2>
 
             <form action="../jsp/BusquedaAdeudos.jsp" method="POST" id="myform" style="width: 25%">
-                <input id="buscar" style=" text-align: center;"   type="search" list="alumnos" name="idAlumno" placeholder="Selecciona ID..." required>
-               
+                <input id="buscar" style=" text-align: center;" autocomplete="off"  type="number" list="alumnos" name="idAlumno" placeholder="Selecciona ID..." required>
+
                 <button type="submit" >Buscar</button>
                 <datalist id="alumnos" >
                     <%
@@ -73,7 +65,6 @@
                             Statement st = conn.createStatement();
                             ResultSet rs = st.executeQuery(query);
                             while (rs.next()) {
-
                                 out.print("<option value=\"" + rs.getString("idalumnos") + "\">" + rs.getString("nombre") + "</option>");
                             }
                             conn.close();
@@ -87,11 +78,11 @@
                 </datalist>
             </form>
 
-            <div style="width:500px;" class="ui-body ui-body-a ui-corner-all">    
-                <div id="mydiv">
 
-                </div>
+            <div style="width:500px;" id="mydiv">
+
             </div>
+
 
         </div>
     </body>

@@ -14,7 +14,7 @@
         String Usuario = request.getParameter("user");
         String Contraseña = request.getParameter("pass");
 
-        if(Usuario.equals("ITSON") && Contraseña.equals("123")){
+        if(Usuario.equals("admin") && Contraseña.equals("123")){
 
         HttpSession sesion = request.getSession(true);
         sesion.setAttribute("kino","1");

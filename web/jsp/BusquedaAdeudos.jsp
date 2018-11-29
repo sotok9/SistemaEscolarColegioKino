@@ -20,7 +20,7 @@
                 + "where idalumno=" + ID;
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
-        out.print("<form id=\"adeudos\" >");
+        out.print("<form class='animated fadeInUp ui-body ui-body-a ui-corner-all' id=\"adeudos\" >");
         out.print(" <input id=\"id\" data-role\"none\" type=\"hidden\" name=\"id\" value=\"" + ID + "\"> ");
         while (rs.next()) {
             String style = "";

@@ -16,6 +16,7 @@
         <title>JSP Page</title>
 
         <link rel="stylesheet" href="../jquery1.4/jquery.mobile-1.4.5.css" />
+        <link rel="stylesheet" href="../animate.css" />
 
         <script src="../jquery1.4/jquery.mobile-1.4.5.min.js"></script>
         <script src="../jquery1.4/demos/js/jquery.js"></script>
@@ -46,7 +47,6 @@
         <script>
             $(document).ready(function () {
                 var options = {
-                    beforeSubmit: showRequest,
                     success: showResponse,
                     clearForm: true
 
@@ -55,34 +55,19 @@
             });
 
 
-            function showRequest(formData, jqForm, options) {
-                var queryString = $.param(formData);
-
-                alert('About to submit: \n\n' + queryString);
-                return true;
-            }
-
             function showResponse(responseText, statusText, xhr, $form) {
                 $('#mydiv').html(responseText).trigger("create");
                 var options = {
-                    beforeSubmit: modificar1,
                     success: Modificar,
                     clearForm: true
                 };
                 $('#modificar').ajaxForm(options);
-                alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+               // alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
             }
 
             function Modificar(responseText) {
                 alert(responseText);
-                location.href = "../Tutores/EliminarModificarTutor.html"
-            }
-
-            function modificar1(formData, jqForm, options) {
-                var queryString = $.param(formData);
-
-                alert('About to submit: \n\n' + queryString);
-                return true;
+                location.href = "../Tutores/EliminarModificarTutor.jsp"
             }
 
             function test() {
@@ -102,10 +87,10 @@
         
         <div  align="center">
 
-            <h2>Tutores Registrados</h2>
+            <h2>Modificar o Eliminar Tutor</h2>
 
             <form action="../jsp/FormModificarTutor.jsp" method="post" id="myform"  style="width: 25%">
-                <input style=" text-align: center;" autocomplete="off"   type="search" list="tutores" name="idTutor" placeholder="Seleccionar tutor..." class="CrecerInput">
+                <input style=" text-align: center;" autocomplete="off"   type="search" list="tutores" name="idTutor" placeholder="Seleccionar Tutor" class="CrecerInput">
 
                 <button type="submit">buscar</button> 
             </form>

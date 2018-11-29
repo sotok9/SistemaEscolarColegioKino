@@ -24,14 +24,13 @@
 
 
 
-<form method='get' action='../jsp/ModificarAlumno.jsp' id="modificar" >
+<form class='animated fadeInUp ui-body ui-body-a ui-corner-all' method='get' action='../jsp/ModificarAlumno.jsp' id="modificar" >
 
            <div data-role="header" data-theme="b" class="ui-corner-all" style="margin-top:25px; " >
-    <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Modificar Alumno ID:#<%=rs.getString("idalumnos")%></h4>
+               <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Modificar Alumno <br> ID:#<%=rs.getString("idalumnos")%></h4>
 </div>
 
 
-                  <div class="ui-body ui-body-a ui-corner-all">       
                 <input type="text" id="idTutor" value="<%=rs.getString("idtutor")%>"  placeholder="ID del tutor" name="idTutor" readonly>
                 <input type="hidden" name="idAlumno" value="<%=ID%>" id="idAlumno" >
 
@@ -111,7 +110,7 @@
                 <label style="font-family: verdana; font-weight: bolder" for="textarea-1">Discapacidad:</label>
                 <textarea  name="DiscapacidadAlumno" id="DiscapacidadAlumno"><%=rs.getString("discapacidad")%></textarea>
                 <br>
-            </div>
+
 
 
 
@@ -120,7 +119,7 @@
 <%
         }
         out.print("<button type='submit'  class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Guardar Cambios</button>");
-        out.print("<a onclick='test()' class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Eliminar Alumno</a>");
+        out.print("<a onclick='eliminar()' class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Eliminar Alumno</a>");
         out.print("</form>");
         st.close();
         conn.close();

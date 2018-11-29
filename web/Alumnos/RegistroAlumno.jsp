@@ -20,6 +20,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../jquery1.4/jquery.mobile-1.4.5.css">
+        <link rel="stylesheet" href="../animate.css" />
         <script src="../jquery1.4/jquery.mobile-1.4.5.min.js"></script> 
         <script src="../jquery1.4/demos/js/jquery.js"></script>
         <script src=../jquery1.4/demos/js/jquery.mobile-1.4.5.min.js></script> 
@@ -57,7 +58,6 @@ and open the template in the editor.
 
             $(document).ready(function () {
                 var options = {
-                    beforeSubmit: showRequest,
                     success: showResponse,
                     clearForm: true        // clear all form fields after successful submit 
 
@@ -65,12 +65,6 @@ and open the template in the editor.
                 $('#myform').ajaxForm(options);
             });
 
-            function showRequest(formData, jqForm, options) {
-                var queryString = $.param(formData);
-
-                alert('About to submit: \n\n' + queryString);
-                return true;
-            }
             function showResponse(responseText, statusText, xhr, $form) {
                 alert(responseText.trim());
                 location.href = "../Alumnos/AsignarTutor.jsp"
@@ -81,7 +75,7 @@ and open the template in the editor.
 
     <body style="align-items: center;">
 
-        <form action="../jsp/RegistrarAlumno.jsp" method="post" id="myform" style="align-items: center; width:600px; height: 200px; margin-left: 35%;">
+        <form class="animated slideInRight" action="../jsp/RegistrarAlumno.jsp" method="post" id="myform" style="align-items: center; width:600px; height: 200px; margin-left: 35%;">
 
             <div data-role="header" data-theme="b" class="ui-corner-all" style="margin-top:25px; " >
                 <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Registro de Alumnos</h4>
@@ -156,7 +150,7 @@ and open the template in the editor.
                 </fieldset>
                 <br>
                 <label style="font-family: verdana; font-weight: bolder" for="textarea-1">Discapacidad:</label>
-                <textarea  name="DiscapacidadAlumno" id="DiscapacidadAlumno"></textarea>
+                <textarea  name="DiscapacidadAlumno" id="DiscapacidadAlumno" placeholder="Opcional"></textarea>
                 <br>
                 <button type="submit" style="margin-left: 240px;"  class="BotonEncima ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar</button>
 

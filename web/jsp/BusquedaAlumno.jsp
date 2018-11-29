@@ -6,7 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <%@page import="clases.ConexionMysql.Conexion"%>
-<table>
+<table class="animated fadeInUp">
     <tr>
         <th>ID</th>
         <th>Nombre</th>

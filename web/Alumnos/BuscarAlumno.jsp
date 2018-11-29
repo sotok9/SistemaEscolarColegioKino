@@ -14,7 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-
+        <link rel="stylesheet" href="../animate.css" />
         <link rel="stylesheet" href="../jquery1.4/jquery.mobile-1.4.5.css" />
 
         <script src="../jquery1.4/jquery.mobile-1.4.5.min.js"></script>
@@ -46,7 +46,6 @@
         <script>
             $(document).ready(function () {
                 var options = {
-                    beforeSubmit: showRequest,
                     success: showResponse,
                     clearForm: true        // clear all form fields after successful submit 
 
@@ -55,16 +54,9 @@
             });
 
 
-            function showRequest(formData, jqForm, options) {
-                var queryString = $.param(formData);
-
-                alert('About to submit: \n\n' + queryString);
-                return true;
-            }
-
             function showResponse(responseText, statusText, xhr, $form) {
                 $('#mydiv').html(responseText);
-                alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+               // alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
             }
         </script>
 
@@ -76,7 +68,7 @@
             <h2>Alumnos Registrados</h2>
 
             <form action="../jsp/BusquedaAlumno.jsp" method="post" id="myform"  style="width: 30%">
-                <input style=" text-align: center;" autocomplete="off"   type="search" list="alumnos" name="Nombre-Alumno" placeholder="Nombre del alumno..." class="CrecerInput">
+                <input style=" text-align: center;" autocomplete="off"   type="search" list="alumnos" name="Nombre-Alumno" placeholder="Nombre (vacio para busqueda general)" class="CrecerInput">
                 <button type="submit">buscar</button> 
             </form>
             <div id="mydiv">

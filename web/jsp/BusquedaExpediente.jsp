@@ -8,7 +8,7 @@
 <%@page import="clases.ConexionMysql.Conexion"%>
 <%
     Conexion conexion = new Conexion();
-    String nombre = (String) request.getParameter("NombreAlumno");
+    String ID =request.getParameter("idAlumno");
     try {
         String myDriver = "org.gjt.mm.mysql.Driver";
         Class.forName(myDriver);
@@ -16,16 +16,16 @@
 
         String query = "SELECT expediente.*, alumnos.nombre FROM expediente "
                 + "INNER JOIN alumnos ON expediente.idalumno = alumnos.idalumnos "
-                + "WHERE alumnos.nombre='" + nombre + "'";
+                + "WHERE alumnos.idalumnos="+ID;
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
         while (rs.next()) {
             
             
 %>
-    <form id="expediente" >
+    <form class='ui-body ui-body-a ui-corner-all animated fadeInUp' id="expediente" >
         <input type="hidden" name="idExp" id="idExp" value="<%=rs.getInt("idexp")%>" />
-        <a><%=nombre%></a>
+        <a>Alumno ID:#<%=ID%></a>
                 <fieldset id="myfield" data-role="controlgroup">
                     
                     <input type="checkbox" name="ActaNacimiento" value="1" id="chkActaNacimiento" class="custom" <%if(rs.getInt("acta")==1){out.print("checked");}%>/>
@@ -72,7 +72,7 @@
             conn.close();
             rs.close();
     } catch (Exception e) {
-        out.print("Got an exception! ");
+        out.print("Error, selecciona un id valido! <br>reporte tecnico:");
         out.print(e.getMessage());
     }
 %>
