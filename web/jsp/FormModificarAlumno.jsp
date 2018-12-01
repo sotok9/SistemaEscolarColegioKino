@@ -7,18 +7,20 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    Conexion conexion = new Conexion();
+    Conexion conexion = new Conexion(); //clase conexion inicializada
+    //captura de parametros recibidos
     int ID = Integer.valueOf(request.getParameter("idAlumno"));
     try {
         String myDriver = "org.gjt.mm.mysql.Driver";
         Class.forName(myDriver);
         Connection conn = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
-
+        
         String query = "SELECT * FROM alumnos WHERE idalumnos =" + ID;
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
 
         while (rs.next()) {
+            //se imprime formulario con los valores encontrados en el resultado
 %>
 
 
@@ -74,7 +76,7 @@
                         <option value="B">B</option>   
                     </select>
                     <select name="idCiclo" id="select-v-2b">
-                        <%
+                        <%// scriplet para armar el select de ciclos
                             try {
 
                                 Class.forName("com.mysql.jdbc.Driver");
@@ -89,7 +91,7 @@
                                     
                                     int id = rs2.getInt("idciclo");
                                     String ciclo = rs2.getInt("año") + "-" + (rs2.getInt("año") + 1);
-                                    ;
+                                    // se imprime cada option del select ciclo, si coincide se marca como seleccionado
                                     if(rs.getInt("idciclo")==id)
                                     {
                                         selected = "selected";
@@ -103,7 +105,7 @@
                                 out.print("Got an exception! ");
                                 out.print(e.getMessage());
                             }
-                        %>
+                        // scriplet para armar el select de ciclos%>
                     </select>
                 </fieldset>
                 <br>
@@ -118,8 +120,11 @@
 
 <%
         }
+        //se imprime boton para modificar del form
         out.print("<button type='submit'  class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Guardar Cambios</button>");
+        //se imprime boton para eliminar del form
         out.print("<a onclick='eliminar()' class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Eliminar Alumno</a>");
+        //se imprime cierre de form
         out.print("</form>");
         st.close();
         conn.close();

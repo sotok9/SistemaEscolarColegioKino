@@ -6,6 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <%@page import="clases.ConexionMysql.Conexion"%>
+<!-- Comienzo de la tabla de respuesta -->
 <table class="animated fadeInUp">
     <tr>
         <th>ID</th>
@@ -16,7 +17,8 @@
         <th>Correo</th>
     </tr>
     <%
-        Conexion conexion = new Conexion();
+        Conexion conexion = new Conexion(); //clase conexion inicializada
+        //captura de parametros recibidos
         String nombre = (String) request.getParameter("Nombre-Tutor");
         try {
             String myDriver = "org.gjt.mm.mysql.Driver";
@@ -27,12 +29,14 @@
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
+                
                 int id = rs.getInt("idtutor");
                 String Nombre = rs.getString("nombre");
                 String Direccion = rs.getString("direccion");
                 long telefono1 = rs.getLong("tel1");
                 long telefono2 = rs.getLong("tel2");
                 String correo = rs.getString("correo");
+                //se imprime las columnas para el renglon de la tabla por cada resultado
                 out.print("<tr>");
                 out.print("<td>" + id + "</td>");
                 out.print("<td>" + Nombre + "</td>");

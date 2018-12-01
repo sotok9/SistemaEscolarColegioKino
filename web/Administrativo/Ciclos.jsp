@@ -21,18 +21,18 @@
         <title>JSP Page</title>
         <script>
             $().ready(function () {
-                $("#ciclo1").change(function () {
+                $("#ciclo1").change(function () {  //funcion para actualizar segundo input del ciclo cada vez que cambie el primero
                     $("#ciclo2").val(parseInt($("#ciclo1").val()) + 1)
                 })
             })
 
         </script>
         <script>
-            function insertar(){
+            function insertar(){ //funcion ejecutada para post form de registrar ciclo
                 var formulario = $("#myform");
                 $.post("../jsp/RegistrarCiclo.jsp",formulario.serialize(), respuesta );
             }
-            function respuesta(datos){
+            function respuesta(datos){ //funcion ejecutada despues del post
                 alert(datos);
             }
         </script>
@@ -56,7 +56,7 @@
                 <button onclick="insertar()"  class="ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all"></button>
 
                 <select style="width: 45%;text-align: center" data-role="none" name="cars" size="3">
-                    <%
+                    <%//scriplet para armar e imprimir las opciones de este select
                         try {
                             Conexion conexion = new Conexion();
                             Class.forName("com.mysql.jdbc.Driver");
@@ -68,6 +68,7 @@
                             while (rs.next()) {
                                 int id = rs.getInt("idciclo");
                                 String ciclo = rs.getInt("año") + "-" + (rs.getInt("año")+1);
+                                //impresion de option por cada ciclo encontrado
                                 out.print("<option value=\""+id+"\">"+ciclo+"</option>");
                             }
                             con.close();
@@ -77,7 +78,7 @@
                             out.print("Got an exception! ");
                             out.print(e.getMessage());
                         }
-                    %>
+                    //scriplet para armar e imprimir las opciones de este select%>
                 </select>
             </div>
         </form>

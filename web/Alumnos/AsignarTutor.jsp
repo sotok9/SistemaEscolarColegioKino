@@ -47,39 +47,40 @@
         </style>
 
         <script>
-            $(document).ready(function () {
-                var options = {
-                    success: showResponse,
-                    clearForm: true        // clear all form fields after successful submit 
+           $(document).ready(function () {//funcion ejecutada cuando la pagina haya cargado
+                var options = {//variable options que se asignara para la libreria de ajaxforms
+                    success: showResponse,//funcion que se ejecutara despues de ejecutar el post/get del form
+                    clearForm: true       // limpiar formulario despues de la accion
 
                 };
                 $('#myform').ajaxForm(options);
             });
 
             function showResponse(responseText, statusText, xhr, $form) {
-                $('#mydiv').html(responseText);
+                $('#mydiv').html(responseText); // se asigna la respuesta de texto que contiene una tabla a el div
                 //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
             }
         </script>
         <script>
-            function siguiente() {
-                var rdBtn = $('input[name=Radiobtn]:checked');
+            function siguiente() { // funcion que pasa los datos de tutor al registro de alumnos
+                var rdBtn = $('input[name=Radiobtn]:checked'); // se busca el radio seleccionado
                 var row = 0;
                 var roww;
                 var ciclo = 0;
                 var Tutor;
                 var idTutor;
-                row = rdBtn.attr('id');
+                row = rdBtn.attr('id'); // se extrae el atributo de id al radio (tambien usado como referencia de renglon)
                 if(row==null){
                     alert("Selecciona un tutor primero")
                 }else{
-                $('#Tabla tr').each(function () {
-                    if (ciclo == row) {
-                        idTutor = $(this).find("td").eq(0).html();
+                $('#Tabla tr').each(function () { // se recorre toda la tabla para buscar el renglon seleccionado
+                    if (ciclo == row) {//se guardan los datos del renglon seleccionado
+                        idTutor = $(this).find("td").eq(0).html(); 
                         Tutor = $(this).find("td").eq(1).html();
                     }
                     ciclo += 1;
                 });
+                //los datos del tutor seleccionado se almacenan en sesion para pasar al siguiente form
                 sessionStorage.setItem("idTutor", idTutor);
                 sessionStorage.setItem("NombreTutor", Tutor);
                 location.href = "../Alumnos/RegistroAlumno.jsp";
@@ -105,6 +106,7 @@
             </form>
 
             <div id="mydiv">
+                <!-- se inicia la tabla de tutores -->
                 <table id="Tabla">
                     <tr>
                         <th>ID</th>
@@ -115,7 +117,7 @@
                         <th>Correo</th>
                         <th>Seleccionar</th>
                     </tr>
-                    <%
+                    <% //scripplet para armar los renglones de tabla y el datalist de tutores
                         Conexion conexion = new Conexion();
                         try {
                             String myDriver = "org.gjt.mm.mysql.Driver";
@@ -126,11 +128,12 @@
                             Statement st = conn.createStatement();
                             ResultSet rs = st.executeQuery(query);
                             List ListaNombres = new ArrayList();
-                            while (rs.next()) {
+                            
+                            while (rs.next()) { //se imprimen todos los renglones y columnas 
                                 num++;
                                 int id = rs.getInt("idtutor");
                                 String Nombre = rs.getString("nombre");
-                                ListaNombres.add(Nombre);
+                                ListaNombres.add(Nombre); // se agregan los nombres a un list para el datalist
                                 String Direccion = rs.getString("direccion");
                                 long telefono1 = rs.getLong("tel1");
                                 long telefono2 = rs.getLong("tel2");
@@ -150,11 +153,11 @@
                             st.close();
                             rs.close();
 
-                    %>
+                   %>
                 </table>
             </div>
             <datalist id="tutores" >
-                <%for (int i = 0; i < ListaNombres.size(); i++) {
+                <%for (int i = 0; i < ListaNombres.size(); i++) { //ciclo para armar el datalist de tutores
                 %>
                 <option  ><%= ListaNombres.get(i)%></option>
 
@@ -163,7 +166,7 @@
                         out.print("Got an exception! ");
                         out.print(e.getMessage());
                     }
-                %>
+                 //scripplet para armar los renglones de tabla y el datalist de tutores%>
             </datalist>
             <a href="./../Tutores/RegistrarTutor.html"  style="margin-right:12.5%" target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar nuevo Tutor</a>
             <button  style="margin-left:12.5%" onclick="siguiente()"   target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Siguiente</button>

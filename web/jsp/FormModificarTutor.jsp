@@ -7,7 +7,8 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    Conexion conexion = new Conexion();
+    Conexion conexion = new Conexion(); //clase conexion inicializada
+    //captura de parametros recibidos
     int ID = Integer.valueOf(request.getParameter("idTutor"));
     try {
         String myDriver = "org.gjt.mm.mysql.Driver";
@@ -17,9 +18,11 @@
         String query = "SELECT * FROM tutores WHERE idtutor =" + ID;
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
+        //se imprime comienzo del formulario
         out.print("<form class='animated fadeInUp ui-body ui-body-a ui-corner-all' method='get' action='../jsp/ModificarTutor.jsp' id=\"modificar\" >");
 
         while (rs.next()) {
+            //se imprime formulario con los valores encontrados en el resultado
 %>
 
 
@@ -41,8 +44,11 @@
 
 <%
         }
+        //se imprime boton para modificar del form
         out.print("<button type='submit'  class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Guardar Cambios</button>");
+        //se imprime boton para eliminar del form
         out.print("<a onclick='test()' class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Eliminar Tutor</a>");
+        //se imprime cierre de form
         out.print("</form>");
         st.close();
         conn.close();

@@ -45,10 +45,10 @@
         </style>
 
         <script>
-            $(document).ready(function () {
-                var options = {
-                    success: showResponse,
-                    clearForm: true
+            $(document).ready(function () {//funcion ejecutada cuando la pagina haya cargado
+                var options = {//variable options que se asignara para la libreria de ajaxforms
+                    success: showResponse, //funcion que se ejecutara despues de ejecutar el post/get del form
+                    clearForm: true       // limpiar formulario despues de la accion
 
                 };
                 $('#myform').ajaxForm(options);
@@ -56,8 +56,10 @@
 
 
             function showResponse(responseText, statusText, xhr, $form) {
+                //se asigna la respuesta que contiene el form de eliminar y modificar a un div
+                //despues de asignarse se recarga el complemento
                 $('#mydiv').html(responseText).trigger("create");
-                var options = {
+                var options = {//se crean mas parametros de ajaxforms para el form de modificacion
                     success: Modificar,
                     clearForm: true
                 };
@@ -65,17 +67,17 @@
                // alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
             }
 
-            function Modificar(responseText) {
+            function Modificar(responseText) { //funcion ejecutada despues del post/get de moficiacion
                 alert(responseText);
                 location.href = "../Tutores/EliminarModificarTutor.jsp"
             }
 
-            function test() {
+            function test() { //funcion usada para el post/get de eliminacion
                 var formulario = $("#modificar");
                 $.get("../jsp/EliminarTutor.jsp",formulario.serialize(), respuesta );
                 
             }
-            function respuesta(datos){
+            function respuesta(datos){ // funcion ejecutada despudes del post/get de eliminacion
                 alert(datos.trim())
                 location.href = "../Tutores/EliminarModificarTutor.jsp"
             }
@@ -95,11 +97,11 @@
                 <button type="submit">buscar</button> 
             </form>
             <div id="mydiv" style="align-items: center; width:600px; height: 200px;">
-
+            <!-- en este div se desplegara el nuevo formulario -->
 
             </div>
             <datalist id="tutores" >
-                <%
+                <%//scripplet para armar el datalist de tutores
                     Conexion conexion = new Conexion();
                     try {
                         String myDriver = "org.gjt.mm.mysql.Driver";
@@ -109,7 +111,7 @@
                         Statement st = conn.createStatement();
                         ResultSet rs = st.executeQuery(query);
                         while (rs.next()) {
-
+                            //se imprime cada option del datalist
                             out.print("<option value='" + rs.getString("idtutor") + "' >" + rs.getString("nombre") + "</option>");
                         }
                         conn.close();
@@ -119,7 +121,7 @@
                         out.print("Got an exception! ");
                         out.print(e.getMessage());
                     }
-                %>
+                //scripplet para armar el datalist de tutores%>
             </datalist>
         </div>
 

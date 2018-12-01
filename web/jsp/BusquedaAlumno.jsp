@@ -6,6 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <%@page import="clases.ConexionMysql.Conexion"%>
+<!-- Comienzo de la tabla de respuesta -->
 <table class="animated fadeInUp">
     <tr>
         <th>ID</th>
@@ -19,7 +20,8 @@
         <th>Tutor</th>
     </tr>
     <%
-        Conexion conexion = new Conexion();
+        Conexion conexion = new Conexion(); //clase conexion inicializada
+        //captura de parametros recibidos
         String nombre = (String) request.getParameter("Nombre-Alumno");
         try {
             String myDriver = "org.gjt.mm.mysql.Driver";
@@ -30,13 +32,16 @@
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
+                
+                //si el valor de la base de datos es 0 es mujer y si es 1 es hombre
                 String sexo = "";
                 if (rs.getInt("sexo") == 0) {
                     sexo = "Mujer";
                 } else {
                     sexo = "Hombre";
                 }
-
+                
+                //se imprime las columnas para el renglon de la tabla por cada resultado
                 out.print("<tr>");
                 out.print("<td>" + rs.getInt("idalumnos") + "</td>");
                 out.print("<td>" + rs.getString("nombre") + "</td>");

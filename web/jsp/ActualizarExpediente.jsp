@@ -10,7 +10,9 @@
 <%
 
     try {
-        Conexion conexion = new Conexion();
+        Conexion conexion = new Conexion();//clase conexion inicializada
+        
+        //captura de parametros recibidos
         int idExp = Integer.valueOf(request.getParameter("idExp"));
         int ActaNac = Integer.valueOf(request.getParameter("ActaNacimiento"));
         int Curp = Integer.valueOf(request.getParameter("Curp"));
@@ -39,6 +41,7 @@
         ps.setInt(9, ServicioMedico);
         ps.setInt(10, idExp);
         ps.executeUpdate();
+        //imprimir respuesta
         out.print("Expediente actualizado");
         
         con.close();

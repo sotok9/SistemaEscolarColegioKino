@@ -7,7 +7,8 @@
 <%@page import="java.sql.*"%>
 <%@page import="clases.ConexionMysql.Conexion"%>
 <%
-    Conexion conexion = new Conexion();
+    Conexion conexion = new Conexion(); //clase conexion inicializada
+    //captura de parametros recibidos
     String ID =request.getParameter("idAlumno");
     try {
         String myDriver = "org.gjt.mm.mysql.Driver";
@@ -21,17 +22,20 @@
         ResultSet rs = st.executeQuery(query);
         while (rs.next()) {
             
-            
+ //se imprime el formulario con 3 elementos por cada documento del expediente
+ //un checkbox con su nombre y un input hidden con el mismo nombre
 %>
     <form class='ui-body ui-body-a ui-corner-all animated fadeInUp' id="expediente" >
         <input type="hidden" name="idExp" id="idExp" value="<%=rs.getInt("idexp")%>" />
         <a>Alumno ID:#<%=ID%></a>
                 <fieldset id="myfield" data-role="controlgroup">
                     
+                    
+                    <!-- se marca el checkbox si se encuentra que el resultado es 1 -->
                     <input type="checkbox" name="ActaNacimiento" value="1" id="chkActaNacimiento" class="custom" <%if(rs.getInt("acta")==1){out.print("checked");}%>/>
                     <input type="hidden" name="ActaNacimiento" id="h-chkActaNacimiento" value="0" />
                     <label for="chkActaNacimiento">Acta de nacimiento</label>
-
+                    
                     <input type="checkbox" name="Curp" value="1" id="chkCurp" class="custom" <%if(rs.getInt("curp")==1){out.print("checked");}%>/>
                     <input type="hidden" name="Curp" value="0" id="h-chkCurp" />
                     <label for="chkCurp">Curp</label>

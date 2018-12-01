@@ -10,7 +10,9 @@
 <%
 
     try {
-        Conexion conexion = new Conexion();
+        Conexion conexion = new Conexion();//clase conexion inicializada
+        
+        //captura de parametros recibidos
         String Nivel = request.getParameter("SelectNivel");
         int Ciclo = Integer.valueOf(request.getParameter("SelectCiclo"));
         int Inscripcion = Integer.valueOf(request.getParameter("Inscripcion"));
@@ -21,12 +23,12 @@
 
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
-
+        
+        //busqueda de precios por ciclo y nivel para saber si existe
         String query = "SELECT * FROM precios WHERE idciclo=" + Ciclo + " and nivel='" + Nivel + "'";
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
-        if (rs.first()) {
-            out.print("Ya existen precios para este ciclo y nivel");
+        if (rs.first()) { // si se encontró precios con el mismo ciclo y nivel se actualiza
             Statement stmt = con.createStatement();
             PreparedStatement ps = con.prepareStatement("UPDATE precios SET inscripcion=?, cuota_padres=?, libros=?, seguro=?, mensualidad=? WHERE idciclo=? and nivel=? ");
 
@@ -42,7 +44,7 @@
             con.close();
             rs.close();
             out.print("Precios Actualizados exitosamente");
-        } else {
+        } else {// caso contrario se crea uno nuevo
 
             Statement stmt = con.createStatement();
             PreparedStatement ps = con.prepareStatement("INSERT INTO precios (idciclo, nivel, inscripcion, cuota_padres, libros, seguro, mensualidad)"
@@ -58,6 +60,7 @@
             st.close();
             con.close();
             rs.close();
+            // se imprime respuesta de texto
             out.print("Precios registrados exitosamente");
         }
     } catch (SQLDataException ex) {

@@ -20,10 +20,10 @@
         <script src="../jquery1.4/jquery.form.js"></script>
 
         <script>
-            $(document).ready(function () {
-                var options = {
-                    success: showResponse,
-                    clearForm: true        // clear all form fields after successful submit 
+            $(document).ready(function () {//funcion ejecutada cuando la pagina haya cargado
+                var options = {//variable options que se asignara para la libreria de ajaxforms
+                    success: showResponse, //funcion que se ejecutara despues de ejecutar el post/get del form
+                    clearForm: true       // limpiar formulario despues de la accion
 
                 };
                 $('#myform').ajaxForm(options);
@@ -31,12 +31,16 @@
 
 
             function showResponse(responseText, statusText, xhr, $form) {
+                // se asigna la respuesta de tesxto que contiene el form de documentacion a un div y se recarga
                 $('#mydiv').html(responseText).trigger("create");
                 //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
             }
         </script>
         <script>
-            function test() {
+            function test() {// funcion para hacer post de los checkbox del form expediente
+                //cada checkbox tiene un hidden input con el mismo nombre
+                //en caso de que el checkbox no este marcado se enviara el input hidden
+                //caso contrario el input hidden se enviara
                 if ($("#chkActaNacimiento").is(':checked')) {
                     $("#h-chkActaNacimiento").attr('disabled', 'disabled');
                 }
@@ -70,9 +74,9 @@
             }
 
 
-            function respuesta(datos) {
-                alert(datos.trim());
-                location.href = "../Alumnos/Documentacion.jsp"
+            function respuesta(datos) { //funcion ejecutada despues del post
+                alert(datos.trim()); //se despliega la respuesta en un alert
+                location.href = "../Alumnos/Documentacion.jsp" //se recarga la pagina
             }
         </script>
     </head>
@@ -85,7 +89,7 @@
                 <input style=" text-align: center;"  autocomplete="off" type="number" list="alumnos" name="idAlumno" placeholder="Selecciona ID" required>
                 <button type="submit" >Buscar</button>
                 <datalist id="alumnos" >
-                    <%
+                    <%//scripplet para armar el datalist de alumnos
                         Conexion conexion = new Conexion();
                         try {
                             String myDriver = "org.gjt.mm.mysql.Driver";
@@ -95,7 +99,7 @@
                             Statement st = conn.createStatement();
                             ResultSet rs = st.executeQuery(query);
                             while (rs.next()) {
-
+                                //se imprime cada opcion del datalist
                                 out.print("<option value=\"" + rs.getString("idalumnos") + "\">" + rs.getString("nombre") + "</option>");
                             }
                             conn.close();
@@ -105,13 +109,13 @@
                             out.print("Got an exception! ");
                             out.print(e.getMessage());
                         }
-                    %>
+                        //scripplet para armar el datalist de alumnos%>
                 </datalist>
             </form>
 
 
             <div id="mydiv" align="center"  style="width:45%">
-
+                <!-- en este div se despliega el expediente -->
             </div>
 
         </div>

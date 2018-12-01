@@ -10,6 +10,7 @@
       
         <%
         HttpSession sesion = request.getSession(false);
+        //se eliminan los registros de sesion
         sesion.invalidate();
         %>
         

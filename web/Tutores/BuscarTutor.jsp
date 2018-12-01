@@ -45,10 +45,10 @@
         </style>
 
         <script>
-            $(document).ready(function () {
-                var options = {
-                    success: showResponse,
-                    clearForm: true        // clear all form fields after successful submit 
+            $(document).ready(function () {//funcion ejecutada cuando la pagina haya cargado
+                var options = {//variable options que se asignara para la libreria de ajaxforms
+                    success: showResponse,//funcion que se ejecutara despues de ejecutar el post/get del form
+                    clearForm: true       // limpiar formulario despues de la accion
 
                 };
                 $('#myform').ajaxForm(options);
@@ -56,6 +56,7 @@
 
 
             function showResponse(responseText, statusText, xhr, $form) {
+                // se asigna la respuesta de texto que contiene una tabla a el div
                 $('#mydiv').html(responseText);
                 //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
             }
@@ -82,7 +83,7 @@
                         <th>Telefono 2</th>
                         <th>Correo</th>
                     </tr>
-                    <%
+                    <%//scripplet para armar los renglones de tabla y el datalist de tutores
                         Conexion conexion = new Conexion();
                         try {
                             String myDriver = "org.gjt.mm.mysql.Driver";
@@ -92,10 +93,11 @@
                             Statement st = conn.createStatement();
                             ResultSet rs = st.executeQuery(query);
                             List ListaNombres = new ArrayList();
-                            while (rs.next()) {
+                            while (rs.next()) {//se imprimen todos los renglones y columnas 
 
                                 int id = rs.getInt("idtutor");
                                 String Nombre = rs.getString("nombre");
+                                 // se agregan los nombres a un list para el datalist
                                 ListaNombres.add(Nombre);
                                 String Direccion = rs.getString("direccion");
                                 long telefono1 = rs.getLong("tel1");
@@ -120,7 +122,7 @@
             </div>
 
             <datalist id="tutores" >
-                <%for (int i = 0; i < ListaNombres.size(); i++) {
+                <%for (int i = 0; i < ListaNombres.size(); i++) {//ciclo para armar el datalist de tutores
                 %>
                 <option  ><%= ListaNombres.get(i)%></option>
 
@@ -129,6 +131,7 @@
                         out.print("Got an exception! ");
                         out.print(e.getMessage());
                     }
+                //scripplet para armar los renglones de tabla y el datalist de tutores
                 %>
             </datalist>
         </div>

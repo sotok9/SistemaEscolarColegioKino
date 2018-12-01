@@ -51,23 +51,25 @@ and open the template in the editor.
 
         <script>
             $().ready(function () {
+                //se busca la informacion del tutor asignado en sesion
+                // y se asigna a los campos de texto señalados
                 $("#idTutor").val(sessionStorage.getItem("idTutor"));
                 $("#NombreTutor").val(sessionStorage.getItem("NombreTutor"));
             })
 
 
-            $(document).ready(function () {
-                var options = {
-                    success: showResponse,
-                    clearForm: true        // clear all form fields after successful submit 
+            $(document).ready(function () {//funcion ejecutada cuando la pagina haya cargado
+                var options = {//variable options que se asignara para la libreria de ajaxforms
+                    success: showResponse, //funcion que se ejecutara despues de ejecutar el post/get del form
+                    clearForm: true       // limpiar formulario despues de la accion
 
                 };
                 $('#myform').ajaxForm(options);
             });
 
             function showResponse(responseText, statusText, xhr, $form) {
-                alert(responseText.trim());
-                location.href = "../Alumnos/AsignarTutor.jsp"
+                alert(responseText.trim()); //se despliega en un alert la respuesta obtenida
+                location.href = "../Alumnos/AsignarTutor.jsp" //recarga de pagina
             }
         </script>
     </head>
@@ -124,7 +126,7 @@ and open the template in the editor.
                         <option value="B">B</option>   
                     </select>
                     <select name="idCiclo" id="select-v-2b">
-                        <%
+                        <%// scriplet para armar el select de ciclos
                             try {
                                 Conexion conexion = new Conexion();
                                 Class.forName("com.mysql.jdbc.Driver");
@@ -136,6 +138,7 @@ and open the template in the editor.
                                 while (rs.next()) {
                                     int id = rs.getInt("idciclo");
                                     String ciclo = rs.getInt("año") + "-" + (rs.getInt("año") + 1);
+                                    // se imprime cada option del select
                                     out.print("<option value=\"" + id + "\">" + ciclo + "</option>");
                                 }
                                 con.close();
@@ -145,6 +148,7 @@ and open the template in the editor.
                                 out.print("Got an exception! ");
                                 out.print(e.getMessage());
                             }
+                            // scriplet para armar el select de ciclos
                         %>
                     </select>
                 </fieldset>

@@ -16,7 +16,7 @@
         <title>JSP Page</title>
 
         <link rel="stylesheet" href="../jquery1.4/jquery.mobile-1.4.5.css" />
-<link rel="stylesheet" href="../animate.css" />
+        <link rel="stylesheet" href="../animate.css" />
         <script src="../jquery1.4/jquery.mobile-1.4.5.min.js"></script>
         <script src="../jquery1.4/demos/js/jquery.js"></script>
         <script src="../jquery1.4/demos/js/jquery.mobile-1.4.5.min.js"></script>
@@ -44,10 +44,10 @@
         </style>
 
         <script>
-            $(document).ready(function () {
-                var options = {
-                    success: showResponse,
-                    clearForm: true
+            $(document).ready(function () {//funcion ejecutada cuando la pagina haya cargado
+                var options = {//variable options que se asignara para la libreria de ajaxforms
+                    success: showResponse, //funcion que se ejecutara despues de ejecutar el post/get del form
+                    clearForm: true       // limpiar formulario despues de la accion
 
                 };
                 $('#myform').ajaxForm(options);
@@ -55,8 +55,10 @@
 
 
             function showResponse(responseText, statusText, xhr, $form) {
+                //se asigna la respuesta que contiene el form de eliminar y modificar a un div
+                //despues de asignarse se recarga el complemento
                 $('#mydiv').html(responseText).trigger("create");
-                var options = {
+                var options = {//se crean mas parametros de ajaxforms para el form de modificacion
                     success: Modificar,
                     clearForm: true
                 };
@@ -64,18 +66,18 @@
                 //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
             }
 
-            function Modificar(responseText) {
+            function Modificar(responseText) { //funcion ejecutada despues del post/get de moficiacion
                 alert(responseText);
                 location.href = "../Alumnos/EliminarModificarAlumno.jsp"
             }
 
 
-            function eliminar() {
+            function eliminar() { //funcion usada para el post/get de eliminacion
                 var formulario = $("#modificar");
-                $.get("../jsp/EliminarAlumno.jsp",formulario.serialize(), respuesta );
-                
+                $.get("../jsp/EliminarAlumno.jsp", formulario.serialize(), respuesta);
+
             }
-            function respuesta(datos){
+            function respuesta(datos) { // funcion ejecutada despudes del post/get de eliminacion
                 alert(datos.trim())
                 location.href = "../Alumnos/EliminarModificarAlumno.jsp"
             }
@@ -83,8 +85,8 @@
 
     </head>
     <body>
-        
-        
+
+
         <div  align="center">
 
             <h2>Modificar o Eliminar Alumno</h2>
@@ -95,11 +97,11 @@
                 <button type="submit">Buscar</button> 
             </form>
             <div id="mydiv" style="align-items: center; width:600px; height: 200px;">
-
+                <!-- en este div se desplegara el nuevo formulario -->
 
             </div>
             <datalist id="alumnos" >
-                <%
+                <%//scripplet para armar el datalist de alumnos
                     Conexion conexion = new Conexion();
                     try {
                         String myDriver = "org.gjt.mm.mysql.Driver";
@@ -109,7 +111,7 @@
                         Statement st = conn.createStatement();
                         ResultSet rs = st.executeQuery(query);
                         while (rs.next()) {
-
+                            //se imprime cada opcion del datalist
                             out.print("<option value='" + rs.getString("idalumnos") + "' >" + rs.getString("nombre") + "</option>");
                         }
                         conn.close();
@@ -119,7 +121,7 @@
                         out.print("Got an exception! ");
                         out.print(e.getMessage());
                     }
-                %>
+                //scripplet para armar el datalist de alumnos%>
             </datalist>
         </div>
 

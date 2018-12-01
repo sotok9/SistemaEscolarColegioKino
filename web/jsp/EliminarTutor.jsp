@@ -7,9 +7,10 @@
 <%@page import="java.sql.*"%>
 <%@page import="clases.ConexionMysql.Conexion"%>
 <%
-    Conexion conexion = new Conexion();
-     
+    Conexion conexion = new Conexion(); //clase conexion inicializada
+      
     try {
+        //captura de parametros recibidos
         int ID = Integer.valueOf(request.getParameter("idTutor"));
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
@@ -18,6 +19,7 @@
         PreparedStatement ps = con.prepareStatement("DELETE FROM tutores WHERE idtutor=?");
         ps.setInt(1, ID);
         ps.executeUpdate();
+        //se imprime respuesta de texto
         out.print("Tutor eliminado exitosamente");
 
         con.close();

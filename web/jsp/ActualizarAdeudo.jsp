@@ -10,7 +10,9 @@
 <%
 
     try {
-        Conexion conexion = new Conexion();
+        Conexion conexion = new Conexion(); //clase conexion inicializada
+        
+        //captura de parametros recibidos
         int ID = Integer.valueOf(request.getParameter("id"));
         int Inscripcion = Integer.valueOf(request.getParameter("Inscripcion"));
         int CuotaPadres = Integer.valueOf(request.getParameter("CuotadePadres"));
@@ -126,7 +128,8 @@
         ps.setInt(2, ID);
         ps.executeUpdate();
         /////bloque update
-
+        
+        //imprimir respuesta
         out.print("adeudos actualizados");
 
         con.close();

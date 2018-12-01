@@ -13,8 +13,10 @@
 <%
 
     try {
-        Adeudos adeudos = new Adeudos();
-        Conexion conexion = new Conexion();
+        Adeudos adeudos = new Adeudos(); //Adeudos conexion inicializada
+        Conexion conexion = new Conexion(); //clase conexion inicializada
+        
+        //captura de parametros recibidos
         int idTutor = Integer.valueOf(request.getParameter("idTutor"));
         String idCiclo = request.getParameter("idCiclo");
         String Nombre = request.getParameter("NombreAlumno");
@@ -25,7 +27,7 @@
         String Grado = request.getParameter("SelectGrado");
         String Grupo = request.getParameter("SelectGrupo");
         String Discapacidad = request.getParameter("DiscapacidadAlumno");
-        out.print(Sexo);
+
 
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
@@ -43,16 +45,19 @@
         ps.setString(9, Nivel);
         ps.setString(10, Grupo);
         ps.executeUpdate();
+        //despues de insertar el alumno se busca el ultimo alumno insertado
         String query = "SELECT idalumnos FROM schema_kino.alumnos ORDER BY idalumnos DESC";
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(query);
         if(rs.first()){
+            //se usa la clase adeudos para generar todos los adeudos en la base de datos segun los precios registrados 
             adeudos.GenerarNuevo(rs.getInt("idalumnos"));
         }
             st.close();
             con.close();
             rs.close();
             ps.close();
+            //se imprime la respuesta de texto
         out.print("Alumno registrado exitosamente");
     } catch (Exception ex) {
         out.print("Error al registrar tutor: " + ex.getMessage());

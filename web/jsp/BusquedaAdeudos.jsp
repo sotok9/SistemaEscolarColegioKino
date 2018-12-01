@@ -7,9 +7,10 @@
 <%@page import="java.sql.*"%>
 <%@page import="clases.ConexionMysql.Conexion"%>
 <%
-    Conexion conexion = new Conexion();
+    Conexion conexion = new Conexion(); //clase conexion inicializada
 
     try {
+        //captura de parametros recibidos
         int ID = Integer.valueOf(request.getParameter("idAlumno"));
         String myDriver = "org.gjt.mm.mysql.Driver";
         Class.forName(myDriver);
@@ -20,13 +21,17 @@
                 + "where idalumno=" + ID;
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
+        //imprimir empiezo del form adeudos
         out.print("<form class='animated fadeInUp ui-body ui-body-a ui-corner-all' id=\"adeudos\" >");
-        out.print(" <input id=\"id\" data-role\"none\" type=\"hidden\" name=\"id\" value=\"" + ID + "\"> ");
-        while (rs.next()) {
+        //imprimir input hidden con el valor del id del alumno
+        out.print(" <input id=\"id\" type=\"hidden\" name=\"id\" value=\"" + ID + "\"> ");
+        while (rs.next()) { //ciclo para armar formulario
             String style = "";
             if (rs.getInt("cantidad") == 0) {
+                //si la cantidad obtenida es 0 se le da el color verde al input
                 style = "style=\"background-color: green\"";
             }
+//se imprime un label y un input por cada resultado de la tabla            
 %>
 <div class="ui-field-contain">
     <label for="id<%=rs.getString("motivo")%>"><%=rs.getString("motivo")%>:</label>
@@ -37,7 +42,9 @@
 <%
 
         }
+        //se imprime el boton que ejecutara el metodo test()
         out.print("<a onclick=\"test()\" class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Guardar Cambios</a>");
+        //se imprime el cierre de form
         out.print("</form>");
         st.close();
         conn.close();

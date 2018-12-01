@@ -7,7 +7,9 @@
 <%@page import="java.sql.*"%>
 <%@page import="clases.ConexionMysql.Conexion"%>
 <% try {
-        Conexion conexion = new Conexion();
+        Conexion conexion = new Conexion(); //clase conexion inicializada
+        
+        //captura de parametros recibidos
         int idTutor = Integer.valueOf(request.getParameter("idTutor"));
         int idAlumno = Integer.valueOf(request.getParameter("idAlumno"));
         String idCiclo = request.getParameter("idCiclo");
@@ -19,7 +21,6 @@
         String Grado = request.getParameter("SelectGrado");
         String Grupo = request.getParameter("SelectGrupo");
         String Discapacidad = request.getParameter("DiscapacidadAlumno");
-        out.print(Sexo);
 
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
@@ -42,6 +43,7 @@
             con.close();
 
             ps.close();
+            // se imprime respuesta de texto
         out.print("Alumno modificado exitosamente");
     } catch (Exception ex) {
         out.print("Error al modificado alumno " + ex.getMessage());

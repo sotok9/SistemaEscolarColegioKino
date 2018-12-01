@@ -32,26 +32,17 @@
         </style>
 
         <script>
-            $(document).ready(function () {
-                var options = {
-                    beforeSubmit: showRequest,
-                    success: showResponse,
-                    clearForm: true        // clear all form fields after successful submit 
+            $(document).ready(function () {//funcion ejecutada cuando la pagina haya cargado
+                var options = {//variable options que se asignara para la libreria de ajaxforms
+                    success: showResponse,//funcion que se ejecutara despues de ejecutar el post/get del form
+                    clearForm: true       // limpiar formulario despues de la accion
 
                 };
-                $('#FormRegistro').ajaxForm(options);
+                $('#FormRegistro').ajaxForm(options);// se le asigna la funcion y parametros de la libreria al form
             });
 
-
-            function showRequest(formData, jqForm, options) {
-                var queryString = $.param(formData);
-
-                alert('About to submit: \n\n' + queryString);
-                return true;
-            }
-
             function showResponse(responseText, statusText, xhr, $form) {
-                alert('status: ' + statusText + '\n\nresponseText: \n' + responseText.trim());
+                alert('\n\nresponseText: \n' + responseText.trim()); // se muestra el resuldado de la operacion en un alert
                 location.href = '../Administrativo/Precios.jsp'
             }
         </script>
@@ -76,7 +67,7 @@
                     </select>
 
                         <select name="SelectCiclo" id="select-v-2b">
-                        <%
+                        <%//scriplet para armar e imprimir las opciones de este select
                             try {
                                 Conexion conexion = new Conexion();
                                 Class.forName("com.mysql.jdbc.Driver");
@@ -88,6 +79,7 @@
                                 while (rs.next()) {
                                     int id = rs.getInt("idciclo");
                                     String ciclo = rs.getInt("año") + "-" + (rs.getInt("año") + 1);
+                                    //impresion de option por cada ciclo 
                                     out.print("<option value=\"" + id + "\">" + ciclo + "</option>");
                                 }
                                 con.close();
@@ -97,7 +89,7 @@
                                 out.print("Got an exception! ");
                                 out.print(e.getMessage());
                             }
-                        %>
+                        //scriplet para armar e imprimir las opciones de este select%>
                     </select>
                         
                 </fieldset>

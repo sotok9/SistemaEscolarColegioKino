@@ -7,11 +7,14 @@
 <%@page import="java.sql.*"%>
 <%@page import="clases.ConexionMysql.Conexion"%>
 <%
-    Conexion conexion = new Conexion();
+    Conexion conexion = new Conexion(); //clase conexion inicializada
+    
+    //captura de parametros recibidos
     String nombre = request.getParameter("Nombre-Tutor");
     String direccion = request.getParameter("Direccion-Tutor");
     long tel1 = Long.valueOf((String) request.getParameter("Telefono-Tutor-1"));
     long tel2 = 0;
+    
     if (!((String) request.getParameter("Telefono-Tutor-2")).equals("")) {
         tel2 = Long.valueOf(request.getParameter("Telefono-Tutor-2"));
     }
@@ -31,6 +34,7 @@
         ps.setString(5, correo);
         ps.setInt(6, ID);
         ps.executeUpdate();
+        //se imprime respuesta
         out.print("Tutor modificado exitosamente");
 
         con.close();

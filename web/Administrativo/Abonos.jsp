@@ -17,29 +17,28 @@
         <script src="../jquery1.4/jquery.mobile-1.4.5.min.js"></script>
         <script src="../jquery1.4/demos/js/jquery.js"></script>
         <script src="../jquery1.4/demos/js/jquery.mobile-1.4.5.min.js"></script>
-        <script src="../jquery1.4/jquery.form.js"></script>
+        <script src="../jquery1.4/jquery.form.js"></script>   <!-- libreria ajax forms -->
 
         <script>
-            $(document).ready(function () {
-                var options = {
-                    success: showResponse,
-                    clearForm: true        // clear all form fields after successful submit 
+            $(document).ready(function () { //funcion ejecutada cuando la pagina haya cargado
+                var options = { //variable options que se asignara para la libreria de ajaxforms
+                    success: showResponse, //funcion que se ejecutara despues de ejecutar el post/get del form
+                    clearForm: true        // limpiar formulario despues de la accion
 
                 };
-                $('#myform').ajaxForm(options);
+                $('#myform').ajaxForm(options); // se le asigna la funcion y parametros de la libreria al form
             });
 
-            function showResponse(responseText, statusText, xhr, $form) {
-                $('#mydiv').html(responseText).trigger("create");
-                // $("#idAlumno").val($("#buscar").val());
-                //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+            function showResponse(responseText, statusText, xhr, $form) { //funcion ejecutada despues del post/get
+                $('#mydiv').html(responseText).trigger("create"); //se asigna la respuesta de texto que contiene un formulario a un div y se recarga el div
+               alert('\n\nresponseText: \n' + responseText);
             }
-            function test() {
+            function test() { //funcion usada para usar post/get actualizar adeudo
                 var formulario = $("#adeudos")
                 // alert(formulario.serialize())
                 $.get("../jsp/ActualizarAdeudo.jsp", formulario.serialize(), respuesta);
             }
-            function respuesta(datos) {
+            function respuesta(datos) { //funcion ejecutada despues de post/get de funcion test()
                 alert(datos.trim());
                 location.href = "../Administrativo/Abonos.jsp";
             }
@@ -55,7 +54,7 @@
 
                 <button type="submit" >Buscar</button>
                 <datalist id="alumnos" >
-                    <%
+                    <% //scriplet para armar e imprimir las opciones de este datalist
                         Conexion conexion = new Conexion();
                         try {
                             String myDriver = "org.gjt.mm.mysql.Driver";
@@ -65,6 +64,7 @@
                             Statement st = conn.createStatement();
                             ResultSet rs = st.executeQuery(query);
                             while (rs.next()) {
+                                //impresion de option por cada alumno
                                 out.print("<option value=\"" + rs.getString("idalumnos") + "\">" + rs.getString("nombre") + "</option>");
                             }
                             conn.close();
@@ -74,7 +74,7 @@
                             out.print("Got an exception! ");
                             out.print(e.getMessage());
                         }
-                    %>
+                    //scriplet para armar e imprimir las opciones de este datalist%>
                 </datalist>
             </form>
 

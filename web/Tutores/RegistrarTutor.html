@@ -23,13 +23,13 @@
         </style>
 
         <script>
-            function insertar(){
+            function insertar(){ //funcion usada para el post de el form
                 var formulario = $("#FormRegistro");
                 $.post("../jsp/RegistroTutor.jsp",formulario.serialize(), respuesta );
                 
             }
-            function respuesta(datos){
-                alert(datos.trim());
+            function respuesta(datos){ //funcion ejecutada despues de el post
+                alert(datos.trim()); //se despliega la respuesta en un alert
                 $('#FormRegistro').trigger("reset");
                // location.href = "../Tutores/RegistrarTutor.html"
             }
