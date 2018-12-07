@@ -31,11 +31,12 @@
                 //si la cantidad obtenida es 0 se le da el color verde al input
                 style = "style=\"background-color: green\"";
             }
-//se imprime un label y un input por cada resultado de la tabla            
+//se imprime un label y 2 input por cada resultado de la tabla, uno de ellos guarda la cantidad y el otro el iddeuda en hidden   
 %>
 <div class="ui-field-contain">
     <label for="id<%=rs.getString("motivo")%>"><%=rs.getString("motivo")%>:</label>
     <input <%=style%> type="number" name="<%=rs.getString("motivo").replaceAll("\\s+", "")%>" id="id<%=rs.getString("motivo")%>" value="<%=rs.getInt("cantidad")%>" max="<%=rs.getInt("cantidad")%>" min="0">
+    <input  type="hidden" name="id<%=rs.getString("motivo").replaceAll("\\s+", "")%>"  value="<%=rs.getInt("iddeuda")%>" >
 </div>
 
 

@@ -86,7 +86,7 @@
             <h2>Buscar expediente de alumno</h2>
 
             <form action="../jsp/BusquedaExpediente.jsp" method="POST" id="myform" style="width: 25%">
-                <input style=" text-align: center;"  autocomplete="off" type="number" list="alumnos" name="idAlumno" placeholder="Selecciona ID" required>
+                <input style=" text-align: center;" pattern="[0-9]{1,}" title="Solo numeros" autocomplete="off" type="text" list="alumnos" name="idAlumno" placeholder="Selecciona ID" required>
                 <button type="submit" >Buscar</button>
                 <datalist id="alumnos" >
                     <%//scripplet para armar el datalist de alumnos

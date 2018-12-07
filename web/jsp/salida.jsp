@@ -15,6 +15,7 @@
         %>
         
         <script >
+            sessionStorage.clear();
          location.href="../index.html";
         </script>
         

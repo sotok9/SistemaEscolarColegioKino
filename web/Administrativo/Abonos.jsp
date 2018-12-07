@@ -31,15 +31,12 @@
 
             function showResponse(responseText, statusText, xhr, $form) { //funcion ejecutada despues del post/get
                 $('#mydiv').html(responseText).trigger("create"); //se asigna la respuesta de texto que contiene un formulario a un div y se recarga el div
-               alert('\n\nresponseText: \n' + responseText);
             }
             function test() { //funcion usada para usar post/get actualizar adeudo
                 var formulario = $("#adeudos")
-                // alert(formulario.serialize())
                 $.get("../jsp/ActualizarAdeudo.jsp", formulario.serialize(), respuesta);
             }
             function respuesta(datos) { //funcion ejecutada despues de post/get de funcion test()
-                alert(datos.trim());
                 location.href = "../Administrativo/Abonos.jsp";
             }
         </script>
@@ -50,7 +47,7 @@
             <h2 id="asd">Buscar adeudos de alumno</h2>
 
             <form action="../jsp/BusquedaAdeudos.jsp" method="POST" id="myform" style="width: 25%">
-                <input id="buscar" style=" text-align: center;" autocomplete="off"  type="number" list="alumnos" name="idAlumno" placeholder="Selecciona ID..." required>
+                <input id="buscar" pattern="[0-9]{1,}" title="Solo numeros" style=" text-align: center;" autocomplete="off"  type="text" list="alumnos" name="idAlumno" placeholder="Selecciona ID..." required>
 
                 <button type="submit" >Buscar</button>
                 <datalist id="alumnos" >

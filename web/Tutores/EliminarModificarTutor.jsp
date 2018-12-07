@@ -92,7 +92,7 @@
             <h2>Modificar o Eliminar Tutor</h2>
 
             <form action="../jsp/FormModificarTutor.jsp" method="post" id="myform"  style="width: 25%">
-                <input style=" text-align: center;" autocomplete="off"   type="search" list="tutores" name="idTutor" placeholder="Seleccionar Tutor" class="CrecerInput">
+                <input style=" text-align: center;" autocomplete="off" pattern="[0-9]{1,}" title="Solo numeros"  type="search" list="tutores" name="idTutor" placeholder="Seleccionar Tutor" class="CrecerInput">
 
                 <button type="submit">buscar</button> 
             </form>
