@@ -19,6 +19,25 @@
         <script src="../jquery1.4/demos/js/jquery.mobile-1.4.5.min.js"></script>
         <script src="../jquery1.4/jquery.form.js"></script>   <!-- libreria ajax forms -->
 
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 70%;
+                margin-top: 3%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+
         <script>
             $(document).ready(function () { //funcion ejecutada cuando la pagina haya cargado
                 var options = {//variable options que se asignara para la libreria de ajaxforms
@@ -30,39 +49,31 @@
             });
 
             function showResponse(responseText, statusText, xhr, $form) { //funcion ejecutada despues del post/get
-                $('#mydiv').html(responseText).trigger("create"); //se asigna la respuesta de texto que contiene un formulario a un div y se recarga el div
-            }
-            function test() { //funcion usada para usar post/get actualizar adeudo
-                var formulario = $("#adeudos")
-                $.get("../jsp/ActualizarAdeudo.jsp", formulario.serialize(), respuesta);
-            }
-            function respuesta(datos) { //funcion ejecutada despues de post/get de funcion test()
-                alert(datos.trim());
-                location.href = "../Administrativo/Abonos.jsp";
+                $('#mydiv').html(responseText).trigger("create"); //se asigna la respuesta de texto que contiene una tabla a un div y se recarga el div
             }
         </script>
     </head>
     <body>
         <div  align="center">
 
-            <h2>Buscar adeudos de alumno</h2>
+            <h2 id="asd">Buscar historial de abonos</h2>
 
-            <form action="../jsp/BusquedaAdeudos.jsp" method="POST" id="myform" style="width: 25%">
-                <input id="buscar" pattern="[0-9]{1,}" title="Solo numeros" style=" text-align: center;" autocomplete="off"  type="text" list="alumnos" name="idAlumno" placeholder="Selecciona ID..." required>
+            <form action="../jsp/BusquedaMovimientos.jsp" method="POST" id="myform" style="width: 25%">
+                <input id="buscar" style=" text-align: center;" autocomplete="off"  type="text" list="usuarios" name="NombreUsuario" placeholder="Nombre (Vacio para busqueda general)">
 
-                <datalist id="alumnos" >
+                <datalist id="usuarios" >
                     <% //scriplet para armar e imprimir las opciones de este datalist
                         Conexion conexion = new Conexion();
                         try {
                             String myDriver = "org.gjt.mm.mysql.Driver";
                             Class.forName(myDriver);
                             Connection conn = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
-                            String query = "SELECT idalumnos, nombre FROM alumnos";
+                            String query = "SELECT nombre FROM usuarios";
                             Statement st = conn.createStatement();
                             ResultSet rs = st.executeQuery(query);
                             while (rs.next()) {
                                 //impresion de option por cada alumno
-                                out.print("<option value=\"" + rs.getString("idalumnos") + "\">" + rs.getString("nombre") + "</option>");
+                                out.print("<option >" + rs.getString("nombre") + "</option>");
                             }
                             conn.close();
                             st.close();
@@ -73,39 +84,17 @@
                         }
                         //scriplet para armar e imprimir las opciones de este datalist%>
                 </datalist>
-                <select name="SelectCiclo" >
-                    <%//scriplet para armar e imprimir las opciones de este select
-                        try {
-                            Class.forName("com.mysql.jdbc.Driver");
-                            Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
-                            String query = "SELECT * FROM ciclo ORDER BY año DESC";
-                            Statement st = con.createStatement();
-                            ResultSet rs = st.executeQuery(query);
-                            while (rs.next()) {
-                                int id = rs.getInt("idciclo");
-                                String ciclo = rs.getInt("año") + "-" + (rs.getInt("año") + 1);
-                                //impresion de option por cada ciclo 
-                                out.print("<option value=\"" + id + "\">" + ciclo + "</option>");
-                            }
-                            con.close();
-                            st.close();
-                            rs.close();
-                        } catch (Exception e) {
-                            out.print("Got an exception! ");
-                            out.print(e.getMessage());
-                        }
-                            //scriplet para armar e imprimir las opciones de este select%>
-                </select>
                 <button type="submit" >Buscar</button>
             </form>
 
 
-            <div style="width:500px;" id="mydiv">
-
-            </div>
 
 
+
+        </div>
+        <div align="center" style="width: 100%;" id="mydiv">
+            
         </div>
     </body>
 </html>

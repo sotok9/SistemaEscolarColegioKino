@@ -138,7 +138,8 @@
                         <li data-icon="calendar" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b privilegio5"><a  href="./Administrativo/Ciclos.jsp" onclick="fadeOut(500)" target="Marco">Ciclos</a></li>
                         <li data-icon="tag" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b privilegio5"><a href="./Administrativo/Precios.jsp" onclick="fadeOut(500)" target="Marco" >Precios</a></li>
                         <li data-icon="user" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b privilegio5"><a href="./Administrativo/RegistrarUsuario.jsp" onclick="fadeOut(500)" target="Marco" >Usuarios</a></li>
-                        <li data-icon="edit" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b privilegio5"><a>Avance de ciclo</a></li>
+                        <li data-icon="bullets" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b privilegio5"><a href="./Administrativo/MovimientosAbonos.jsp" onclick="fadeOut(500)" target="Marco" >Historial Abonos</a></li>
+                        <li data-icon="edit" class="BotonEncima ui-shadow-icon ui-btn ui-shadow ui-corner-all ui-btn-b privilegio5"><a href="./Administrativo/AvanceCiclo.jsp" onclick="fadeOut(500)" target="Marco">Avance de ciclo</a></li>
                     </ul> 
                 </div>
 

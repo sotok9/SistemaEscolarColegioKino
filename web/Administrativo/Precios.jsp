@@ -42,7 +42,7 @@
             });
 
             function showResponse(responseText, statusText, xhr, $form) {
-                alert('\n\nresponseText: \n' + responseText.trim()); // se muestra el resuldado de la operacion en un alert
+                alert(responseText.trim()); // se muestra el resuldado de la operacion en un alert
                 location.href = '../Administrativo/Precios.jsp'
             }
         </script>
