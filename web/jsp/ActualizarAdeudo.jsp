@@ -7,13 +7,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <%@page import="clases.ConexionMysql.Conexion"%>
+<%@page import="clases.Auxiliar.RegistroMovimientos"%>
 <%
 
     try {
         Conexion conexion = new Conexion(); //clase conexion inicializada
-
+        RegistroMovimientos Movimientos = new RegistroMovimientos(); //clase conexion inicializada
+        
+        HttpSession sesion = request.getSession(false);
+        int UsuarioSesion = (Integer) sesion.getAttribute("idusuario");
+            
         //captura de parametros recibidos
         int ID = Integer.valueOf(request.getParameter("id"));
+        
         int Inscripcion = Integer.valueOf(request.getParameter("Inscripcion"));
         int CuotaPadres = Integer.valueOf(request.getParameter("CuotadePadres"));
         int Libros = Integer.valueOf(request.getParameter("Libros"));
@@ -37,84 +43,100 @@
         PreparedStatement ps = con.prepareStatement(SqlQuery);
         ps.setInt(1, Inscripcion);
         ps.setInt(2, Integer.valueOf(request.getParameter("idInscripcion")));
+        //Registrar cambio para seguimiento en la base de datos
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idInscripcion")), UsuarioSesion, Inscripcion);
+        
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, CuotaPadres);
         ps.setInt(2, Integer.valueOf(request.getParameter("idCuotadePadres")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idCuotadePadres")), UsuarioSesion, CuotaPadres);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, Libros);
         ps.setInt(2, Integer.valueOf(request.getParameter("idLibros")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idLibros")), UsuarioSesion, Libros);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, Seguro);
         ps.setInt(2, Integer.valueOf(request.getParameter("idSeguro")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idSeguro")), UsuarioSesion, Seguro);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, MensualidadSep);
         ps.setInt(2, Integer.valueOf(request.getParameter("idMensualidadSeptiembre")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idMensualidadSeptiembre")), UsuarioSesion, MensualidadSep);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, MensualidadOct);
         ps.setInt(2, Integer.valueOf(request.getParameter("idMensualidadOctubre")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idMensualidadOctubre")), UsuarioSesion, MensualidadOct);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, MensualidadNov);
         ps.setInt(2, Integer.valueOf(request.getParameter("idMensualidadNoviembre")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idMensualidadNoviembre")), UsuarioSesion, MensualidadNov);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, MensualidadDic);
         ps.setInt(2, Integer.valueOf(request.getParameter("idMensualidadDiciembre")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idMensualidadDiciembre")), UsuarioSesion, MensualidadDic);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, MensualidadEn);
         ps.setInt(2, Integer.valueOf(request.getParameter("idMensualidadEnero")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idMensualidadEnero")), UsuarioSesion, MensualidadEn);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, MensualidadFeb);
         ps.setInt(2, Integer.valueOf(request.getParameter("idMensualidadFebrero")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idMensualidadFebrero")), UsuarioSesion, MensualidadFeb);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, MensualidadMar);
         ps.setInt(2, Integer.valueOf(request.getParameter("idMensualidadMarzo")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idMensualidadMarzo")), UsuarioSesion, MensualidadMar);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, MensualidadAbr);
         ps.setInt(2, Integer.valueOf(request.getParameter("idMensualidadAbril")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idMensualidadAbril")), UsuarioSesion, MensualidadAbr);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, MensualidadMay);
         ps.setInt(2, Integer.valueOf(request.getParameter("idMensualidadMayo")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idMensualidadMayo")), UsuarioSesion, MensualidadMay);
         ps.executeUpdate();
         /////bloque update
 
         ////bloque update
         ps.setInt(1, MensualidadJun);
         ps.setInt(2, Integer.valueOf(request.getParameter("idMensualidadJunio")));
+        Movimientos.GenerarMovimiento(Integer.valueOf(request.getParameter("idMensualidadJunio")), UsuarioSesion, MensualidadJun);
         ps.executeUpdate();
         /////bloque update
 

@@ -17,6 +17,9 @@
         boolean conectar = false;
         int privilegios = 0;
         String nombre = "";
+        
+        HttpSession sesion = request.getSession(true);
+        
         Conexion conexion = new Conexion();//conexion inicializada
         try {
             String myDriver = "org.gjt.mm.mysql.Driver";
@@ -27,6 +30,7 @@
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             if (rs.first()) {
+                sesion.setAttribute("idusuario", rs.getInt("idusuario"));
                 conectar = true;
                 nombre = rs.getString("nombre");
                 privilegios = rs.getInt("privilegios");
@@ -41,7 +45,7 @@
 
         if ((Usuario.equals("admin") && password.equals("123")) || conectar) {
 
-            HttpSession sesion = request.getSession(true);
+            
             sesion.setAttribute("kino", "1");
 
     %>           

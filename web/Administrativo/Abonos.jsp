@@ -21,7 +21,7 @@
 
         <script>
             $(document).ready(function () { //funcion ejecutada cuando la pagina haya cargado
-                var options = { //variable options que se asignara para la libreria de ajaxforms
+                var options = {//variable options que se asignara para la libreria de ajaxforms
                     success: showResponse, //funcion que se ejecutara despues de ejecutar el post/get del form
                     clearForm: true        // limpiar formulario despues de la accion
 
@@ -37,6 +37,7 @@
                 $.get("../jsp/ActualizarAdeudo.jsp", formulario.serialize(), respuesta);
             }
             function respuesta(datos) { //funcion ejecutada despues de post/get de funcion test()
+                alert(datos.trim());
                 location.href = "../Administrativo/Abonos.jsp";
             }
         </script>
@@ -49,7 +50,6 @@
             <form action="../jsp/BusquedaAdeudos.jsp" method="POST" id="myform" style="width: 25%">
                 <input id="buscar" pattern="[0-9]{1,}" title="Solo numeros" style=" text-align: center;" autocomplete="off"  type="text" list="alumnos" name="idAlumno" placeholder="Selecciona ID..." required>
 
-                <button type="submit" >Buscar</button>
                 <datalist id="alumnos" >
                     <% //scriplet para armar e imprimir las opciones de este datalist
                         Conexion conexion = new Conexion();
@@ -71,8 +71,33 @@
                             out.print("Got an exception! ");
                             out.print(e.getMessage());
                         }
-                    //scriplet para armar e imprimir las opciones de este datalist%>
+                        //scriplet para armar e imprimir las opciones de este datalist%>
                 </datalist>
+                <select name="SelectCiclo" id="select-v-2b">
+                    <%//scriplet para armar e imprimir las opciones de este select
+                        try {
+                            Class.forName("com.mysql.jdbc.Driver");
+                            Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
+
+                            String query = "SELECT * FROM ciclo ORDER BY año DESC";
+                            Statement st = con.createStatement();
+                            ResultSet rs = st.executeQuery(query);
+                            while (rs.next()) {
+                                int id = rs.getInt("idciclo");
+                                String ciclo = rs.getInt("año") + "-" + (rs.getInt("año") + 1);
+                                //impresion de option por cada ciclo 
+                                out.print("<option value=\"" + id + "\">" + ciclo + "</option>");
+                            }
+                            con.close();
+                            st.close();
+                            rs.close();
+                        } catch (Exception e) {
+                            out.print("Got an exception! ");
+                            out.print(e.getMessage());
+                        }
+                            //scriplet para armar e imprimir las opciones de este select%>
+                </select>
+                <button type="submit" >Buscar</button>
             </form>
 
 

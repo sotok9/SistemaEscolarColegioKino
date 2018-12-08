@@ -21,24 +21,24 @@ public class Adeudos {
         String Nivel = ObtenerNivel(idAlumno);
         Double[] precios = ObtenerPrecios(idCiclo, Nivel);
 
-        InsertarAdeudo(idAlumno, "Inscripcion", precios[0]);
-        InsertarAdeudo(idAlumno, "Cuota de Padres", precios[1]);
-        InsertarAdeudo(idAlumno, "Libros", precios[2]);
-        InsertarAdeudo(idAlumno, "Seguro", precios[3]);
+        InsertarAdeudo(idAlumno, idCiclo, "Inscripcion", precios[0]);
+        InsertarAdeudo(idAlumno, idCiclo, "Cuota de Padres", precios[1]);
+        InsertarAdeudo(idAlumno, idCiclo, "Libros", precios[2]);
+        InsertarAdeudo(idAlumno, idCiclo, "Seguro", precios[3]);
         
-        InsertarAdeudo(idAlumno, "Mensualidad Septiembre", precios[4]);
-        InsertarAdeudo(idAlumno, "Mensualidad Octubre", precios[4]);
-        InsertarAdeudo(idAlumno, "Mensualidad Noviembre", precios[4]);
-        InsertarAdeudo(idAlumno, "Mensualidad Diciembre", precios[4]);
-        InsertarAdeudo(idAlumno, "Mensualidad Enero", precios[4]);
-        InsertarAdeudo(idAlumno, "Mensualidad Febrero", precios[4]);
-        InsertarAdeudo(idAlumno, "Mensualidad Marzo", precios[4]);
-        InsertarAdeudo(idAlumno, "Mensualidad Abril", precios[4]);
-        InsertarAdeudo(idAlumno, "Mensualidad Mayo", precios[4]);
-        InsertarAdeudo(idAlumno, "Mensualidad Junio", precios[4]);
+        InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Septiembre", precios[4]);
+        InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Octubre", precios[4]);
+        InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Noviembre", precios[4]);
+        InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Diciembre", precios[4]);
+        InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Enero", precios[4]);
+        InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Febrero", precios[4]);
+        InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Marzo", precios[4]);
+        InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Abril", precios[4]);
+        InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Mayo", precios[4]);
+        InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Junio", precios[4]);
     }
 
-    private void InsertarAdeudo(int idAlumno, String Motivo, Double Cantidad) {
+    private void InsertarAdeudo(int idAlumno, int idCiclo, String Motivo, Double Cantidad) {
         try {
             Conexion conexion = new Conexion();
 
@@ -46,10 +46,11 @@ public class Adeudos {
             Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
             Statement stmt = con.createStatement();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO deudas (idalumno, motivo, cantidad) VALUES(?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO deudas (idalumno, motivo, cantidad, idciclo) VALUES(?,?,?,?)");
             ps.setInt(1, idAlumno);
             ps.setString(2, Motivo);
             ps.setDouble(3, Cantidad);
+            ps.setInt(4, idCiclo);
             ps.executeUpdate();
             ps.close();
         } catch (Exception ex) {

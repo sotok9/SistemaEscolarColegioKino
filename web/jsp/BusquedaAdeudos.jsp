@@ -12,13 +12,14 @@
     try {
         //captura de parametros recibidos
         int ID = Integer.valueOf(request.getParameter("idAlumno"));
+        int idCiclo = Integer.valueOf(request.getParameter("SelectCiclo"));
         String myDriver = "org.gjt.mm.mysql.Driver";
         Class.forName(myDriver);
         Connection conn = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
         String query = "SELECT iddeuda, idalumno, motivo, cantidad, nombre FROM deudas "
                 + "INNER JOIN alumnos ON deudas.idalumno = alumnos.idalumnos "
-                + "where idalumno=" + ID;
+                + "where idalumno=" + ID+" and deudas.idciclo="+idCiclo;
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
         //imprimir empiezo del form adeudos
