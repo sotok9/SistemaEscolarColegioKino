@@ -34,7 +34,7 @@
             }
             function respuesta(datos){ //funcion ejecutada despues del post
                 alert(datos);
-                location.href="../Administrativo/Ciclos.jsp"
+                location.href="../principal.jsp"
             }
         </script>
     </head>

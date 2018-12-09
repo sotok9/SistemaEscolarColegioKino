@@ -24,7 +24,7 @@ public class Advertencias {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             if (!rs.first()) {
-                return "<p style='font-size: 30px; color: red;' >No hay ciclos registrados!!</p>";
+                return "<p style='font-size: 30px; color: red;' >No hay ciclos escolares registrados!!</p>";
             }
             con.close();
             st.close();
