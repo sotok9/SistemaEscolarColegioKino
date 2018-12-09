@@ -65,7 +65,6 @@
             function siguiente() { // funcion que pasa los datos de tutor al registro de alumnos
                 var rdBtn = $('input[name=Radiobtn]:checked'); // se busca el radio seleccionado
                 var row = 0;
-                var roww;
                 var ciclo = 0;
                 var Tutor;
                 var idTutor;

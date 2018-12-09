@@ -75,38 +75,6 @@
                         <option value="A">A</option>
                         <option value="B">B</option>   
                     </select>
-                    <select name="idCiclo" id="select-v-2b">
-                        <%// scriplet para armar el select de ciclos
-                            try {
-
-                                Class.forName("com.mysql.jdbc.Driver");
-                                Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
-
-                                String query2 = "SELECT * FROM ciclo ORDER BY año DESC";
-                                Statement st2 = con.createStatement();
-                                ResultSet rs2 = st2.executeQuery(query2);
-                                while (rs2.next()) {
-                                    String selected="";
-                                    
-                                    
-                                    int id = rs2.getInt("idciclo");
-                                    String ciclo = rs2.getInt("año") + "-" + (rs2.getInt("año") + 1);
-                                    // se imprime cada option del select ciclo, si coincide se marca como seleccionado
-                                    if(rs.getInt("idciclo")==id)
-                                    {
-                                        selected = "selected";
-                                    }
-                                    out.print("<option value=\"" + id + "\" "+selected+">" + ciclo + "</option>");
-                                }
-                                con.close();
-                                st2.close();
-                                rs2.close();
-                            } catch (Exception e) {
-                                out.print("Got an exception! ");
-                                out.print(e.getMessage());
-                            }
-                        // scriplet para armar el select de ciclos%>
-                    </select>
                 </fieldset>
                 <br>
                 <label style="font-family: verdana; font-weight: bolder" for="textarea-1">Discapacidad:</label>

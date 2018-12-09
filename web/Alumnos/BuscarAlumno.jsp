@@ -25,7 +25,7 @@
             table {
                 font-family: arial, sans-serif;
                 border-collapse: collapse;
-                width: 50%;
+                width: 80%;
             }
 
             td, th {

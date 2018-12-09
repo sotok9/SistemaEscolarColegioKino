@@ -180,7 +180,7 @@
 
 
                 <div class="contendorDivFrame">
-                    <iframe name="Marco" src="principal.html" id="Marco" frameborder="0" >
+                    <iframe name="Marco" src="principal.jsp" id="Marco" frameborder="0" >
 
                     </iframe>
                 </div>

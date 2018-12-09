@@ -107,7 +107,7 @@ and open the template in the editor.
 
                         <label for="select-v-2a">Nivel</label>
                         <select name="SelectNivel" id="select-v-2a">
-                        <option value="Prescolar">Prescolar</option>
+                        <option value="Preescolar">Preescolar</option>
                         <option value="Primaria">Primaria</option>
                         <option value="Secundaria">Secundaria</option>
                     </select>
@@ -120,8 +120,8 @@ and open the template in the editor.
                         <option value="5°">5°</option>
                         <option value="6°">6°</option>
                     </select>
-                        <label for="select-v-2c">Grupo</label>
-                        <select name="SelectGrupo" id="select-v-2c">
+                    <label for="select-v-2c">Grupo</label>
+                    <select name="SelectGrupo" id="select-v-2c">
                         <option value="A">A</option>
                         <option value="B">B</option>   
                     </select>
