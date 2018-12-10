@@ -28,7 +28,10 @@
         String Grupo = request.getParameter("SelectGrupo");
         String Discapacidad = request.getParameter("DiscapacidadAlumno");
 
-
+        if ( (Nivel.equals("Preescolar") || Nivel.equals("Secundaria")) && (Grado.equals("4°") || Grado.equals("5°") || Grado.equals("6°")) )
+        {
+        out.print("No es posible usar ese nivel escolar con grado mayor a 3°");
+        }else{
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
@@ -59,6 +62,7 @@
             ps.close();
             //se imprime la respuesta de texto
         out.print("Alumno registrado exitosamente");
+        }
     } catch (Exception ex) {
         out.print("Error al registrar tutor: " + ex.getMessage());
     }

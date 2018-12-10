@@ -38,7 +38,13 @@ and open the template in the editor.
             .BotonEncima:hover
             {
                 box-shadow: inset 0 0 20px rgba(0.19, 1, 0.22, 1), 0 0 20px rgba(0.19, 1, 0.22, 1); 
-            }                        
+            }
+            .descuentosOn{
+                background: greenyellow;
+            }
+            .descuentosOff{
+                background: gray;
+            }
             <!--se acabo-->
 
         </style>
@@ -55,6 +61,11 @@ and open the template in the editor.
                 // y se asigna a los campos de texto señalados
                 $("#idTutor").val(sessionStorage.getItem("idTutor"));
                 $("#NombreTutor").val(sessionStorage.getItem("NombreTutor"));
+                $("#chkDescuento").change(function () {
+                    $("#descuento").toggleClass("descuentosOn");
+                    $("#descuento").toggleClass("descuentosOff");
+                    $('#numDescuento').prop('disabled', function(i, v) { return !v; });
+                });
             })
 
 
@@ -101,17 +112,20 @@ and open the template in the editor.
                             <input type="radio" name="Sexo" id="radio-choice-t-6b"  value="0">
                             <label class="BotonEncima" for="radio-choice-t-6b">Femenino</label>
                      </fieldset>
-
+                <div id="descuento"  style="width: 25%; padding-bottom: 5%" class="descuentosOff ui-corner-all">
+                    <p  style=" font-family: verdana; font-weight: bolder" >Descuento:</p>  
+                    <input id="chkDescuento" type="checkbox" data-role="none"  />
+                    <input disabled id="numDescuento" type="number" min="0" max="100" value='0' data-role="none"  style="width: 30%"/>%
+                </div>
                 <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
                     <p  style=" font-family: verdana; font-weight: bolder" >Seleccionar El Nivel Del Alumno: </p>
 
-                        <label for="select-v-2a">Nivel</label>
-                        <select name="SelectNivel" id="select-v-2a">
+                        
+                        <select name="SelectNivel" id="SelectNivel">
                         <option value="Preescolar">Preescolar</option>
                         <option value="Primaria">Primaria</option>
                         <option value="Secundaria">Secundaria</option>
                     </select>
-                        <label for="select-v-2b">Grado</label>
                         <select name="SelectGrado" id="select-v-2b">
                         <option value="1°">1°</option>
                         <option value="2°">2°</option>

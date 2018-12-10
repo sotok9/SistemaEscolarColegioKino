@@ -170,7 +170,7 @@
                         <div align="center" role="main" class="ui-content">
                                 <h3 class="ui-title">¿Volver a la Ventana Principal?</h3>
                             
-                                <a href="./principal.html" onclick="fadeOut(500);ClosePopup();" target="Marco"  class="BotonEncima2 ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="flow" >Volver</a>
+                                <a href="./principal.jsp" onclick="fadeOut(500);ClosePopup();" target="Marco"  class="BotonEncima2 ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="flow" >Volver</a>
                                 <a href="#" onclick="ClosePopup()" class="BotonEncima2 ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" >Cancelar</a>
                             </div>
 
