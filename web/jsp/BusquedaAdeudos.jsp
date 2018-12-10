@@ -19,19 +19,24 @@
 
         String query = "SELECT iddeuda, idalumno, motivo, cantidad, nombre FROM deudas "
                 + "INNER JOIN alumnos ON deudas.idalumno = alumnos.idalumnos "
-                + "where idalumno=" + ID+" and deudas.idciclo="+idCiclo;
+                + "where idalumno=" + ID + " and deudas.idciclo=" + idCiclo;
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query);
         //imprimir empiezo del form adeudos
         out.print("<form class='animated fadeInUp ui-body ui-body-a ui-corner-all' id=\"adeudos\" >");
         //imprimir input hidden con el valor del id del alumno
+        
         out.print(" <input id=\"id\" type=\"hidden\" name=\"id\" value=\"" + ID + "\"> ");
+        rs.first();
+        out.print("<h4>Adeudos de: "+rs.getString("nombre")+"</h4>");
+        rs.beforeFirst();
         while (rs.next()) { //ciclo para armar formulario
             String style = "";
             if (rs.getInt("cantidad") == 0) {
                 //si la cantidad obtenida es 0 se le da el color verde al input
                 style = "style=\"background-color: green\"";
             }
+            
 //se imprime un label y 2 input por cada resultado de la tabla, uno de ellos guarda la cantidad y el otro el iddeuda en hidden   
 %>
 <div class="ui-field-contain">
@@ -51,7 +56,7 @@
         st.close();
         conn.close();
         rs.close();
-    } catch (Exception e) {
+    } catch (SQLException e) {
         out.print("Got an exception! ");
         out.print(e.getMessage());
     }

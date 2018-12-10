@@ -25,7 +25,7 @@
             table {
                 font-family: arial, sans-serif;
                 border-collapse: collapse;
-                width: 50%;
+                width: 70%;
             }
 
             td, th {
@@ -167,8 +167,8 @@
                     }
                  //scripplet para armar los renglones de tabla y el datalist de tutores%>
             </datalist>
-            <a href="./../Tutores/RegistrarTutor.html"  style="margin-right:12.5%" target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar nuevo Tutor</a>
-            <button  style="margin-left:12.5%" onclick="siguiente()"   target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Siguiente</button>
+            <a href="./../Tutores/RegistrarTutor.html"  style="margin-right:25%" target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar nuevo Tutor</a>
+            <button  style="margin-left:25%" onclick="siguiente()"   target="Marco" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Siguiente</button>
         </div>
 
     </body>

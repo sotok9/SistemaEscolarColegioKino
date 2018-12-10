@@ -20,20 +20,30 @@
         ResultSet rs = st.executeQuery(query);
 
         while (rs.next()) {
+            String enabled="", enabledH="", clase="", checked="";
+            int descuento=rs.getInt("descuento");
+            if(descuento==0){
+            enabled ="disabled";
+            clase="descuentosOff";
+            }else{
+            enabledH="disabled";
+            clase="descuentosOn";
+            checked="checked";
+            }
             //se imprime formulario con los valores encontrados en el resultado
 %>
 
 
 
 
-<form class='animated fadeInUp ui-body ui-body-a ui-corner-all' method='get' action='../jsp/ModificarAlumno.jsp' id="modificar" >
+<form align="left" class='animated fadeInUp ui-body ui-body-a ui-corner-all' method='get' action='../jsp/ModificarAlumno.jsp' id="modificar" >
 
            <div data-role="header" data-theme="b" class="ui-corner-all" style="margin-top:25px; " >
                <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Modificar Alumno <br> ID:#<%=rs.getString("idalumnos")%></h4>
 </div>
 
 
-                <input type="text" id="idTutor" value="<%=rs.getString("idtutor")%>"  placeholder="ID del tutor" name="idTutor" readonly>
+                <input type="hidden" id="idTutor" value="<%=rs.getString("idtutor")%>"  placeholder="ID del tutor" name="idTutor" readonly>
                 <input type="hidden" name="idAlumno" value="<%=ID%>" id="idAlumno" >
 
                 <input type="text" name="NombreAlumno" id="Nombre-Alumno" value="<%=rs.getString("nombre")%>"  placeholder="Nombre Del Alumno">            
@@ -48,14 +58,21 @@
                             <input type="radio" name="Sexo" id="radio-choice-t-6b" <%if(rs.getInt("sexo")==0){out.print("checked");}%> value="0">
                             <label class="BotonEncima" for="radio-choice-t-6b">Femenino</label>
                      </fieldset>
-
+                    
+                <div id="descuento"  style="width: 25%; padding-bottom: 5%" class="<%=clase%> ui-corner-all">
+                    <p  style=" font-family: verdana; font-weight: bolder" >Descuento:</p>  
+                    <input <%=checked%>  id="chkDescuento" type="checkbox" data-role="none" style="margin-left: 7%;transform: scale(2)"  />
+                    <input <%=enabled%> id="numDescuento" name="numDescuento" type="number" min="0" max="100" value='<%=descuento%>' data-role="none"  style="margin-left: 7%;width: 30%"/>%
+                    <input <%=enabledH%> id="numDescuento-h" name="numDescuento" type="hidden" value='0' />
+                </div>
+                    
                 <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
                     <p  style=" font-family: verdana; font-weight: bolder" >Seleccionar El Nivel Del Alumno: </p>
 
                         <label for="select-v-2a">Nivel</label>
                         <select name="SelectNivel" id="select-v-2a">
                         <option value="<%=rs.getString("nivel")%>"><%=rs.getString("nivel")%></option>
-                        <option value="Prescolar">Prescolar</option>
+                        <option value="Prescolar">Preescolar</option>
                         <option value="Primaria">Primaria</option>
                         <option value="Secundaria">Secundaria</option>
                     </select>
@@ -81,7 +98,16 @@
                 <textarea  name="DiscapacidadAlumno" id="DiscapacidadAlumno"><%=rs.getString("discapacidad")%></textarea>
                 <br>
 
-
+<script>
+ $(document).ready(function () {//funcion ejecutada cuando la pagina haya cargado
+                $("#chkDescuento").change(function () {
+                    $("#descuento").toggleClass("descuentosOn");
+                    $("#descuento").toggleClass("descuentosOff");
+                    $('#numDescuento').prop('disabled', function(i, v) { return !v; });
+                    $('#numDescuento-h').prop('disabled', function(i, v) { return !v; });
+                });
+            });
+</script>
 
 
 
@@ -89,9 +115,9 @@
 <%
         }
         //se imprime boton para modificar del form
-        out.print("<button type='submit'  class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Guardar Cambios</button>");
+        out.print("<button type='submit' style='margin-right: 25%' class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Guardar Cambios</button>");
         //se imprime boton para eliminar del form
-        out.print("<a onclick='eliminar()' class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Eliminar Alumno</a>");
+        out.print("<a data-rel='popup' data-position-to='origin' data-transition='flip' href='#popupConfirmar' style='margin-left: 25%; background: #990000'' class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Eliminar Alumno</a>");
         //se imprime cierre de form
         out.print("</form>");
         st.close();

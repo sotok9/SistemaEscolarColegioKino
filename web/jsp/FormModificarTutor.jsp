@@ -39,15 +39,15 @@
     <input type="text" name="Direccion-Tutor" value="<%=rs.getString("direccion")%>" id="Direccion-Tutor"  placeholder="Dirección" required>
     <input type="tel" pattern="[0-9]{1,}" title="Solo numeros" value="<%=rs.getString("tel1")%>" name="Telefono-Tutor-1" id="Telefono-Tutor-1" placeholder="Télefono 1" required> 
     <input type="tel" pattern="[0-9]{1,}" title="Solo numeros" value="<%=rs.getString("tel2")%>" name="Telefono-Tutor-2" id="Telefono-Tutor-2" placeholder="Télefono 2(OPCIONAL)"> 
-    <input type="email"  name="Email-Tutor" id="Email-Tutor" value="<%=rs.getString("correo")%>" placeholder="Correo Electronico">
+    <input type="email"  name="Email-Tutor"  id="Email-Tutor" value="<%=rs.getString("correo")%>" placeholder="Correo Electronico">
 
 
 <%
         }
         //se imprime boton para modificar del form
-        out.print("<button type='submit'  class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Guardar Cambios</button>");
+        out.print("<button type='submit' style='margin-right: 25%'  class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Guardar Cambios</button>");
         //se imprime boton para eliminar del form
-        out.print("<a onclick='test()' class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Eliminar Tutor</a>");
+        out.print("<a data-rel='popup' data-position-to='origin' data-transition='flip' href='#popupConfirmar' style='margin-left: 25%; background: #990000' class=\"ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini\" >Eliminar Tutor</a>");
         //se imprime cierre de form
         out.print("</form>");
         st.close();

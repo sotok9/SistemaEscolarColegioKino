@@ -27,7 +27,9 @@
         String Grado = request.getParameter("SelectGrado");
         String Grupo = request.getParameter("SelectGrupo");
         String Discapacidad = request.getParameter("DiscapacidadAlumno");
-
+        
+        int descuento = Integer.valueOf(request.getParameter("numDescuento"));
+        
         if ( (Nivel.equals("Preescolar") || Nivel.equals("Secundaria")) && (Grado.equals("4°") || Grado.equals("5°") || Grado.equals("6°")) )
         {
         out.print("No es posible usar ese nivel escolar con grado mayor a 3°");
@@ -36,7 +38,7 @@
         Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
         PreparedStatement ps = con.prepareStatement("INSERT INTO alumnos "
-                + "(idtutor, idciclo, nombre, sexo, direccion, fechanac, discapacidad, grado, nivel, grupo) VALUES (?,?,?,?,?,?,?,?,?,?)");
+                + "(idtutor, idciclo, nombre, sexo, direccion, fechanac, discapacidad, grado, nivel, grupo, descuento) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
         ps.setInt(1, idTutor);
         ps.setString(2, idCiclo);
         ps.setString(3, Nombre);
@@ -47,6 +49,7 @@
         ps.setString(8, Grado);
         ps.setString(9, Nivel);
         ps.setString(10, Grupo);
+        ps.setInt(11, descuento);
         ps.executeUpdate();
         //despues de insertar el alumno se busca el ultimo alumno insertado
         String query = "SELECT idalumnos FROM schema_kino.alumnos ORDER BY idalumnos DESC";
@@ -63,7 +66,7 @@
             //se imprime la respuesta de texto
         out.print("Alumno registrado exitosamente");
         }
-    } catch (Exception ex) {
-        out.print("Error al registrar tutor: " + ex.getMessage());
+    } catch (SQLException ex) {
+        out.print("Error al registrar Alumno " + ex.getMessage());
     }
 %>

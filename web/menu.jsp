@@ -67,9 +67,8 @@
 
                 next();
             }
-
-            function Salir() {
-
+            if(sessionStorage.getItem("nombre")===null){
+                location.href = "./index.html";
             }
 
 
@@ -157,7 +156,6 @@
                 </div>
 
                 <form data-role="popup" id="popupPrincipal" data-overlay-theme="b" data-theme="b" data-dismissible="true" style="max-width:400px;" class="ui-corner-all" style="padding: 1px; width: 300px"  method="post">
-                    <!--action="./jsp/validar_login.jsp"  ./principal.html  onclick="fadeOut(500)" target="Marco"-->
 
                     <script>
                         function ClosePopup() {
@@ -173,8 +171,6 @@
                                 <a href="./principal.jsp" onclick="fadeOut(500);ClosePopup();" target="Marco"  class="BotonEncima2 ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="flow" >Volver</a>
                                 <a href="#" onclick="ClosePopup()" class="BotonEncima2 ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" >Cancelar</a>
                             </div>
-
-
                 </form>
 
 

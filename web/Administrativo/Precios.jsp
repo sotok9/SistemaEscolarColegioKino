@@ -14,6 +14,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../jquery1.4/jquery.mobile-1.4.5.css">
+        <link rel="stylesheet" href="../animate.css" />
         <script src="../jquery1.4/jquery.mobile-1.4.5.min.js"></script> 
         <script src="../jquery1.4/demos/js/jquery.js"></script>
         <script src=../jquery1.4/demos/js/jquery.mobile-1.4.5.min.js></script> 
@@ -30,7 +31,8 @@
             }
             <!--se acabo-->
         </style>
-
+        
+        
         <script>
             $(document).ready(function () {//funcion ejecutada cuando la pagina haya cargado
                 var options = {//variable options que se asignara para la libreria de ajaxforms
@@ -46,16 +48,26 @@
                 location.href = '../Administrativo/Precios.jsp'
             }
         </script>
+        <script>
+            function buscar() { //funcion usada para el post de el form
+                var formulario = $("#FormRegistro");
+                $.post("../jsp/TablaPrecios.jsp", formulario.serialize(), respuesta);
+
+            }
+            function respuesta(datos) { //funcion ejecutada despues de el post
+                $("#divtabla").html(datos)
+            }
+        </script>
     </head>
     <body >
         <div align="center">
-            <form action="../jsp/RegistroPrecios.jsp" method="post"  id="FormRegistro" style="align-items: center; width:400px; height: 200px;">
+            <form action="../jsp/RegistroPrecios.jsp" method="post"  id="FormRegistro" style="width:500px; height: 200px;">
 
                 <div data-role="header" data-theme="b" class="ui-corner-all" style="margin-top:25px; " >
-                    <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Registro/Actualizacion <br> de Precios</h4>
+                    <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Registrar/Modificar <br>Precios</h4>
                 </div>
 
-                      <div class="ui-body ui-body-a ui-corner-all">
+                      <div align="left" class="ui-body ui-body-a ui-corner-all">
 
                     <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
                         <p  style=" font-family: verdana; font-weight: bolder" >Selecciona nivel y ciclo </p>
@@ -99,9 +111,12 @@
                     <input type="number" name="Libros" placeholder="Libros $$$" min="0" required>
                     <input type="number" name="Seguro" placeholder="Seguro $$$" min="0" required>
                     <input type="number" name="Mensualidad" placeholder="Mensualidad(10 meses) $$$" min="0" required>
-                    <button type="submit" id="btn" style="margin-left: 240px;" class="BotonEncima ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Registrar</button>
+                    <button type="submit" id="btn" class="BotonEncima ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini">Guardar</button>
+                    <a onclick="buscar()" style="margin-left:45%" class="BotonEncima ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini" >Ver precios del ciclo</a>
                 </div>
             </form>
+                         <div style="margin-top:300px" id="divtabla"></div>  
         </div>
+                        
     </body>
 </html>

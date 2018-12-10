@@ -11,7 +11,7 @@ package clases.ConexionMysql;
  */
 public class Conexion {
     //url de conexion a MySQL
-    public String Url = "jdbc:mysql://localhost:3306/schema_kino";
+    public String Url = "jdbc:mysql://localhost:3307/schema_kino";
     //usuario de MySQL
     public String User="root";
     //contraseña del usuario de MySQL

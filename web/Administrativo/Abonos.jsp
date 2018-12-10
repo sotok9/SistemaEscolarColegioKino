@@ -23,13 +23,14 @@
             $(document).ready(function () { //funcion ejecutada cuando la pagina haya cargado
                 var options = {//variable options que se asignara para la libreria de ajaxforms
                     success: showResponse, //funcion que se ejecutara despues de ejecutar el post/get del form
-                    clearForm: true        // limpiar formulario despues de la accion
 
                 };
                 $('#myform').ajaxForm(options); // se le asigna la funcion y parametros de la libreria al form
             });
 
+
             function showResponse(responseText, statusText, xhr, $form) { //funcion ejecutada despues del post/get
+                $("#buscar").val("");
                 $('#mydiv').html(responseText).trigger("create"); //se asigna la respuesta de texto que contiene un formulario a un div y se recarga el div
             }
             function test() { //funcion usada para usar post/get actualizar adeudo
@@ -73,7 +74,7 @@
                         }
                         //scriplet para armar e imprimir las opciones de este datalist%>
                 </datalist>
-                <select name="SelectCiclo" >
+                <select id="SelectCiclo" name="SelectCiclo" >
                     <%//scriplet para armar e imprimir las opciones de este select
                         try {
                             Class.forName("com.mysql.jdbc.Driver");
@@ -95,13 +96,13 @@
                             out.print("Got an exception! ");
                             out.print(e.getMessage());
                         }
-                            //scriplet para armar e imprimir las opciones de este select%>
+                        //scriplet para armar e imprimir las opciones de este select%>
                 </select>
                 <button type="submit" >Buscar</button>
             </form>
 
 
-            <div style="width:500px;" id="mydiv">
+            <div style="width:500px; height: 400px; overflow-y: scroll;"  id="mydiv">
 
             </div>
 

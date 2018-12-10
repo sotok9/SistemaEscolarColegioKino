@@ -27,7 +27,7 @@
 %>
     <form class='ui-body ui-body-a ui-corner-all animated fadeInUp' id="expediente" >
         <input type="hidden" name="idExp" id="idExp" value="<%=rs.getInt("idexp")%>" />
-        <a>Alumno ID:#<%=ID%></a>
+        <a><%=rs.getString("nombre")%> ID:#<%=ID%></a>
                 <fieldset id="myfield" data-role="controlgroup">
                     
                     

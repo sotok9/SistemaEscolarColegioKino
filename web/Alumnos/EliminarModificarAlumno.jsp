@@ -41,6 +41,12 @@
                 display: inline-block;
                 vertical-align: top;
             }
+            .descuentosOn{
+                background: greenyellow;
+            }
+            .descuentosOff{
+                background: gray;
+            }
         </style>
 
         <script>
@@ -51,6 +57,17 @@
 
                 };
                 $('#myform').ajaxForm(options);
+
+                $("#chkDescuento").change(function () {
+                    $("#descuento").toggleClass("descuentosOn");
+                    $("#descuento").toggleClass("descuentosOff");
+                    $('#numDescuento').prop('disabled', function (i, v) {
+                        return !v;
+                    });
+                    $('#numDescuento-h').prop('disabled', function (i, v) {
+                        return !v;
+                    });
+                });
             });
 
 
@@ -96,7 +113,7 @@
 
                 <button type="submit">Buscar</button> 
             </form>
-            <div id="mydiv" style="align-items: center; width:600px; height: 200px;">
+            <div id="mydiv" style="width:600px; height: 200px;">
                 <!-- en este div se desplegara el nuevo formulario -->
 
             </div>
@@ -121,9 +138,27 @@
                         out.print("Got an exception! ");
                         out.print(e.getMessage());
                     }
-                //scripplet para armar el datalist de alumnos%>
+                    //scripplet para armar el datalist de alumnos%>
             </datalist>
         </div>
 
+        <form data-role="popup" id="popupConfirmar" data-overlay-theme="b" data-theme="b" data-dismissible="true" style="max-width:400px;" class="ui-corner-all" style="padding: 1px; width: 300px"  method="post">
+
+            <script>
+                function ClosePopup() {
+                    $("#popupConfirmar").popup("close")
+                }
+            </script>
+                <div data-role="header" style="margin-top: 0px;" data-theme="b">
+                    <h1>Eliminar Alumno</h1>
+            </div>
+                <div align="center" role="main" class="ui-content">
+                        <h3 class="ui-title">¿Esta seguro que desea eliminar el alumno seleccionado?</h3>
+                        <h4>Esto borrara toda la informacion almacenada de dicho alumno</h4>
+                    
+                        <a onclick="eliminar();ClosePopup();"  class="BotonEncima2 ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="flow" >Aceptar</a>
+                        <a href="#" onclick="ClosePopup()" class="BotonEncima2 ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" >Cancelar</a>
+                    </div>
+        </form>
     </body>
 </html>

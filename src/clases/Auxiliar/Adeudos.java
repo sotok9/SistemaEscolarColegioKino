@@ -19,13 +19,14 @@ public class Adeudos {
 
         int idCiclo = ObtenerCiclo(idAlumno);
         String Nivel = ObtenerNivel(idAlumno);
-        Double[] precios = ObtenerPrecios(idCiclo, Nivel);
+        int Descuento = ObtenerDescuento(idAlumno);
+        Double[] precios = ObtenerPrecios(idCiclo, Nivel, Descuento);
 
         InsertarAdeudo(idAlumno, idCiclo, "Inscripcion", precios[0]);
         InsertarAdeudo(idAlumno, idCiclo, "Cuota de Padres", precios[1]);
         InsertarAdeudo(idAlumno, idCiclo, "Libros", precios[2]);
         InsertarAdeudo(idAlumno, idCiclo, "Seguro", precios[3]);
-        
+
         InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Septiembre", precios[4]);
         InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Octubre", precios[4]);
         InsertarAdeudo(idAlumno, idCiclo, "Mensualidad Noviembre", precios[4]);
@@ -95,11 +96,33 @@ public class Adeudos {
         return "";
     }
 
-    private Double[] ObtenerPrecios(int idCiclo, String Nivel) {
-        Double[] Precios = new Double[5];
+    private int ObtenerDescuento(int idAlumno) {
         try {
             Conexion conexion = new Conexion();
 
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
+
+            String query = "SELECT idalumnos, descuento FROM alumnos WHERE idalumnos=" + idAlumno;
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            if (rs.first()) {
+                return rs.getInt("descuento");
+            }
+        } catch (Exception ex) {
+            return 0;
+        }
+        return 0;
+    }
+
+    private Double[] ObtenerPrecios(int idCiclo, String Nivel, int Descuento) {
+        Double[] Precios = new Double[5];
+        try {
+            Conexion conexion = new Conexion();
+            Double DescuentoFinal = 0.0;
+            if (Descuento != 0) {
+                DescuentoFinal = Double.valueOf(Descuento) / 100;
+            }
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(conexion.Url, conexion.User, conexion.Pass);
 
@@ -108,10 +131,19 @@ public class Adeudos {
             ResultSet rs = st.executeQuery(query);
             if (rs.first()) {
                 Precios[0] = rs.getDouble("inscripcion");
+                Precios[0] = Precios[0] - (Precios[0] * DescuentoFinal);
+
                 Precios[1] = rs.getDouble("cuota_padres");
+                Precios[1] = Precios[1] - (Precios[1] * DescuentoFinal);
+                
                 Precios[2] = rs.getDouble("libros");
+                Precios[2] = Precios[2] - (Precios[2] * DescuentoFinal);
+                
                 Precios[3] = rs.getDouble("seguro");
+                Precios[3] = Precios[3] - (Precios[3] * DescuentoFinal);
+                
                 Precios[4] = rs.getDouble("mensualidad");
+                Precios[4] = Precios[4] - (Precios[4] * DescuentoFinal);
             }
         } catch (Exception ex) {
         }

@@ -65,6 +65,7 @@ and open the template in the editor.
                     $("#descuento").toggleClass("descuentosOn");
                     $("#descuento").toggleClass("descuentosOff");
                     $('#numDescuento').prop('disabled', function(i, v) { return !v; });
+                    $('#numDescuento-h').prop('disabled', function(i, v) { return !v; });
                 });
             })
 
@@ -86,9 +87,9 @@ and open the template in the editor.
     </head>
 
 
-    <body style="align-items: center;">
-
-        <form class="animated slideInRight" action="../jsp/RegistrarAlumno.jsp" method="post" id="myform" style="align-items: center; width:600px; height: 200px; margin-left: 35%;">
+    <body>
+        <div align="center">
+        <form align="left" class="animated slideInRight" action="../jsp/RegistrarAlumno.jsp" method="get" id="myform" style="align-items: center; width:600px; height: 200px;">
 
             <div data-role="header" data-theme="b" class="ui-corner-all" style="margin-top:25px; " >
                 <h4 style="color:#ffffff ; font-family: verdana; font-weight: bolder">Registro de Alumnos</h4>
@@ -103,7 +104,7 @@ and open the template in the editor.
                 <input type="text" name="NombreAlumno" id="Nombre-Alumno" value="" placeholder="Nombre Del Alumno" required>            
                 <input type="text" name="DireccionAlumno" id="Direccion-Alumno" value="" placeholder=" Dirección Del Alumno" required>
                 <label style="font-family: verdana; font-weight: bolder" for="date">Fecha De Nacimiento</label>
-                <input type="date" name="FechaNacimiento" id="FechaNacimiento" value="" required/>
+                <input type="date" name="FechaNacimiento" id="FechaNacimiento" required/>
 
                 <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" required>
                     <p  style=" font-family: verdana; font-weight: bolder" >Sexo del Alumno: </p>
@@ -114,8 +115,9 @@ and open the template in the editor.
                      </fieldset>
                 <div id="descuento"  style="width: 25%; padding-bottom: 5%" class="descuentosOff ui-corner-all">
                     <p  style=" font-family: verdana; font-weight: bolder" >Descuento:</p>  
-                    <input id="chkDescuento" type="checkbox" data-role="none"  />
-                    <input disabled id="numDescuento" type="number" min="0" max="100" value='0' data-role="none"  style="width: 30%"/>%
+                    <input id="chkDescuento" type="checkbox" data-role="none" style="margin-left: 7%;transform: scale(2)"  />
+                    <input disabled id="numDescuento" name="numDescuento" type="number" min="0" max="100" value='0' data-role="none"  style="margin-left: 7%;width: 30%"/>%
+                    <input id="numDescuento-h" name="numDescuento" type="hidden" value='0' />
                 </div>
                 <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
                     <p  style=" font-family: verdana; font-weight: bolder" >Seleccionar El Nivel Del Alumno: </p>
@@ -180,7 +182,7 @@ and open the template in the editor.
         </form>
 
            
-
+</div>
     </body>
 
 </html>
